@@ -1,0 +1,113 @@
+commit 13c20ded0eae2a7f6ab76dada017ace4fddb7357
+Author: Amalia Ahola <amalia.ahola@gmail.com>
+Date:   Tue Nov 3 18:44:36 2020 +0200
+
+    poisto ja nimeys
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 24bdca5ae7c16e3823e3c0d196585431d2c3878e
+Author: Amalia Ahola <amalia.ahola@gmail.com>
+Date:   Tue Nov 3 18:34:54 2020 +0200
+
+    Luotiin tiedostoja
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
+
+commit cec359a306d63a75ecab1b43720c425a8e86656d
+Author: Amalia Ahola <amalia.ahola@gmail.com>
+Date:   Tue Nov 3 18:16:02 2020 +0200
+
+    Muokattiin ekaa ja kolmatta
+
+ eka.txt    | 4 ++--
+ kolmas.txt | 2 +-
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
+commit 5974abf9183aa17cf6ba5ed6896d69d09389ac2a
+Author: Amalia Ahola <amalia.ahola@gmail.com>
+Date:   Tue Nov 3 18:13:38 2020 +0200
+
+    Uudelleen nimettiin
+
+ tiedosto.txt => eka.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 0cbce028aa04ad481effeb86381028ea1fbb131f
+Author: Amalia Ahola <amalia.ahola@gmail.com>
+Date:   Tue Nov 3 18:11:13 2020 +0200
+
+    poistettiin toinen.txt
+
+ toinen.txt | 1 -
+ 1 file changed, 1 deletion(-)
+
+commit 5a5427836d7a4af36e83301b765e28c56a64b5a6
+Author: Amalia Ahola <amalia.ahola@gmail.com>
+Date:   Tue Nov 3 18:09:14 2020 +0200
+
+    Muokattiin tekstiä
+
+ tiedosto.txt | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+commit be1c1f410cfde03742ac3c8fbbb393da5b8dd5f0
+Author: Amalia Ahola <amalia.ahola@gmail.com>
+Date:   Tue Nov 3 18:06:01 2020 +0200
+
+    Lisättiin tekstiä
+
+ tiedosto.txt | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
+
+commit 0b0eb2c4aeb0578a8926860de1e65a375a038a38
+Author: Amalia Ahola <amalia.ahola@gmail.com>
+Date:   Tue Nov 3 17:43:41 2020 +0200
+
+    Luotiin kansio stuff
+
+ stuff/jotain.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 963442c8feda2af1042e3782967ea5c5a07bbc45
+Author: Amalia Ahola <amalia.ahola@gmail.com>
+Date:   Tue Nov 3 17:42:18 2020 +0200
+
+    Muokattiin toinen.txt ja kolmas.txt
+
+ kolmas.txt | 1 +
+ toinen.txt | 1 +
+ 2 files changed, 2 insertions(+)
+
+commit c0ec0a946f652fb519db1c37c2ad5c3ad5d2e7c0
+Author: Amalia Ahola <amalia.ahola@gmail.com>
+Date:   Tue Nov 3 17:40:43 2020 +0200
+
+    luotiin kolmas.txt
+
+ kolmas.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+
+commit 5000c8598847751fc27590853ee9925d540340da
+Author: Amalia Ahola <amalia.ahola@gmail.com>
+Date:   Tue Nov 3 17:32:13 2020 +0200
+
+    Muutos ja lisäys
+
+ tiedosto.txt | 1 +
+ toinen.txt   | 0
+ 2 files changed, 1 insertion(+)
+
+commit c46221e34765f3d4c9ede3b462457100500078dc
+Author: Amalia Ahola <amalia.ahola@gmail.com>
+Date:   Tue Nov 3 17:27:54 2020 +0200
+
+    luotiin tiedosto.txt
+
+ tiedosto.txt | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
