@@ -1,6 +1,6 @@
 # Ohte-projekti
 
-Tästä **README**-tiedostosta löytyy linkit laskaritehtäviin ja *tietoa projektistani* (tulossa).
+Tästä **README**-tiedostosta löytyy linkit laskaritehtäviin ja *tietoa projektistani*.
 
 ## Laskarit viikko 1
 
