@@ -21,7 +21,7 @@ Pelinäkymässä:
 -Ruudun tyhjennys valinta
 -Valikko-painike, josta siirrytään valikkoon
 
-![Hahmotelma käyttöliittymästä](ohteKayttis.pdf)
+![Hahmotelma käyttöliittymästä](ohteKayttis.pgn)
 
 ## Toiminnallisuus
 
