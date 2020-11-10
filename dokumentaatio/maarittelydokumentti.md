@@ -20,3 +20,5 @@ Pelinäkymässä:
 -Valinta täytetäänkö ruutuja vai kirjoitetaanko muistiinpanoja
 -Ruudun tyhjennys valinta
 -Valikko-painike, josta siirrytään valikkoon
+
+![alt text](https://github.com/amalia53/ot-harjoitustyo/blob/master/dokumentaatio/ohteKayttis.pdf)
