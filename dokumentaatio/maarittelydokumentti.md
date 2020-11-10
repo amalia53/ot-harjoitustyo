@@ -11,18 +11,42 @@ Sovellus koostuu valikosta ja itse pelistä. Kun sovelluksen käynnistää, auke
 
 Valikon näkymässä painikkeet:
 - (Jatka peliä) *jos peli on kesken*
-- Uusi helppo peli
-- Uusi vaikea peli
+- Uusi peli
 
 Pelinäkymässä:
 - Peliruudukko, josta jokaisen ruudun voi valita
 - Numerot 1-9, jotka voi valita täytettäväksi
-- Valinta täytetäänkö ruutuja vai kirjoitetaanko muistiinpanoja
 - Ruudun tyhjennys valinta
 - Valikko-painike, josta siirrytään valikkoon
 
-![Hahmotelma käyttöliittymästä](kayttishahmotelma.png)
+![Hahmotelma käyttöliittymästä](kayttisHahmotelma.png)
 
 ## Toiminnallisuus
 
-- Pelaaja voi valita helpon tai vaikean pelin
+### Sovelluksen avatessaan: 
+
+- Voi valita helpon tai vaikean pelin
+
+### Pelatessa:
+
+- Näkee peliruudukon
+- Voi valita ruudun, jonka jälkeen voi...
+  - Lisätä ruutuun numeron
+  - Lisätä ruutuun muistiinpanon, kun muistiinpano on valittuna
+  - Poistaa ruudusta kaikki tieto eli numero tai muistiinpanot
+- Siirtyä valikkoon
+
+### Valikossa:
+
+- Voi palata takaisin peliin
+- Valita uuden helpon tai vaikean pelin
+
+## Jatkokehitysideoita
+
+Perusversion jälkeen voidaan lisätä seuraavia toiminnallisuuksia:
+
+- Lisätä muistiinpanoja
+- Lisätä vaikeusasteita
+- Asetuksia, joissa voi...
+  - Lisätä näkymään valitun ruudun pysty- ja vaakarivin korostamisen
+  - Mahdollisuus vaihtaa yötilaan, jolloin tausta on tumma
