@@ -7,7 +7,7 @@ sisältää yhden jokaista numeroa 1-9 välillä. Pelaaja voi valita vaikeusaste
 
 ## Käyttöliittymä
 
-Sovellus koostuu valikosta ja itse pelistä.
+Sovellus koostuu valikosta ja itse pelistä. Kun sovelluksen käynnistää, aukeaa valikko. Pelinäkymään pääsee valitsemalla valikosta uuden helpon tai vanhan pelin. Mikäli pelistä siirtyy valikkoon kesken pelin, valikosta löytyy myös painike jatka peliä, josta pääsee takaisin pelinäkymään.
 
 Valikon näkymässä painikkeet:
 (-Jatka peliä) *jos peli on kesken*
@@ -21,4 +21,8 @@ Pelinäkymässä:
 -Ruudun tyhjennys valinta
 -Valikko-painike, josta siirrytään valikkoon
 
-![alt text](https://github.com/amalia53/ot-harjoitustyo/blob/master/dokumentaatio/ohteKayttis.pdf)
+![Hahmotelma käyttöliittymästä](ohteKayttis.pdf)
+
+## Toiminnallisuus
+
+- Pelaaja voi valita helpon tai vaikean pelin
