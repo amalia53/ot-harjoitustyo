@@ -19,6 +19,12 @@ Sovellus koostuu valikosta ja itse pelistä. Kun sovelluksen käynnistää, auke
 - Ruudun tyhjennys valinta
 - Valikko-painike, josta siirrytään valikkoon
 
+#### Voittonäkymä
+
+- Valmis peliruudukko
+- Onnitteluviesti
+- Painike: Uusi peli
+
 ![Hahmotelma käyttöliittymästä](kayttisHahmotelma.png)
 
 ## Toiminnallisuus
@@ -40,12 +46,18 @@ Sovellus koostuu valikosta ja itse pelistä. Kun sovelluksen käynnistää, auke
 - Voi palata takaisin peliin
 - Valita uuden helpon tai vaikean pelin
 
+#### Pelin loputtuessa
+
+- Peli loppuu, kun kaikissa ruuduissa on oikea numero
+- Voi katsoa valmista ruudukkoa
+- Aloittaa uuden pelin
+
 ## Jatkokehitysideoita
 
 Perusversion jälkeen voidaan lisätä seuraavia toiminnallisuuksia:
 
-- Lisätä muistiinpanoja
-- Lisätä vaikeusasteita
+- Muistiinpanojen täyttäminen ruutuihin
+- Useampi vaikeusaste
 - Asetuksia, joissa voi...
   - Lisätä näkymään valitun ruudun pysty- ja vaakarivin korostamisen
   - Mahdollisuus vaihtaa yötilaan, jolloin tausta on tumma
