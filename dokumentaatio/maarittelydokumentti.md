@@ -26,7 +26,7 @@ Sovellus koostuu valikosta ja itse pelistä. Kun sovelluksen käynnistää, auke
 - Painike: Uusi peli
 - Painike: Valikko
 
-![Hahmotelma käyttöliittymästä](kayttisHahmotelma.png)
+![Hahmotelma käyttöliittymästä](kayttisHahmotelma.jpeg)
 
 ## Toiminnallisuus
 
