@@ -9,11 +9,11 @@ sisältää yhden jokaista numeroa 1-9 välillä. Pelaaja voi valita vaikeusaste
 
 Sovellus koostuu valikosta ja itse pelistä. Kun sovelluksen käynnistää, aukeaa valikko. Pelinäkymään pääsee valitsemalla valikosta uuden helpon tai vanhan pelin. Mikäli pelistä siirtyy valikkoon kesken pelin, valikosta löytyy myös painike jatka peliä, josta pääsee takaisin pelinäkymään.
 
-Valikon näkymässä painikkeet:
-- (Jatka peliä) *jos peli on kesken*
-- Uusi peli
+### Valikon näkymässä
+- (Painike: Jatka peliä) *jos peli on kesken*
+- Painike: Uusi peli
 
-Pelinäkymässä:
+### Pelinäkymässä:
 - Peliruudukko, josta jokaisen ruudun voi valita
 - Numerot 1-9, jotka voi valita täytettäväksi
 - Ruudun tyhjennys valinta
@@ -23,11 +23,11 @@ Pelinäkymässä:
 
 ## Toiminnallisuus
 
-### Sovelluksen avatessaan: 
+### Sovelluksen avatessaan
 
 - Voi valita helpon tai vaikean pelin
 
-### Pelatessa:
+### Pelatessa
 
 - Näkee peliruudukon
 - Voi valita ruudun, jonka jälkeen voi...
@@ -36,7 +36,7 @@ Pelinäkymässä:
   - Poistaa ruudusta kaikki tieto eli numero tai muistiinpanot
 - Siirtyä valikkoon
 
-### Valikossa:
+### Valikossa
 
 - Voi palata takaisin peliin
 - Valita uuden helpon tai vaikean pelin
