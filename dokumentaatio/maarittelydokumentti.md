@@ -32,7 +32,7 @@ Sovellus koostuu valikosta ja itse pelistä. Kun sovelluksen käynnistää, auke
 
 #### Sovelluksen avatessaan
 
-- Voi valita helpon tai vaikean pelin
+- Voi valita aloittaa uuden pelin
 
 #### Pelatessa
 
@@ -60,6 +60,6 @@ Perusversion jälkeen voidaan lisätä seuraavia toiminnallisuuksia:
 
 - Muistiinpanojen täyttäminen ruutuihin
 - Useampi vaikeusaste
-- Asetuksia, joissa voi...
+- Asetukset, joissa voi...
   - Lisätä näkymään valitun ruudun pysty- ja vaakarivin korostamisen
   - Mahdollisuus vaihtaa yötilaan, jolloin tausta on tumma
