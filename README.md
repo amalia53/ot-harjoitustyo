@@ -1,6 +1,6 @@
 # Ohte-projekti
 
-Tästä **README**-tiedostosta löytyy linkit laskaritehtäviin ja *tietoa projektistani*.
+Tästä **README**-tiedostosta löytyy linkit laskaritehtäviin ja *dokumentaatioon*.
 
 ## Dokumentaatio
 
