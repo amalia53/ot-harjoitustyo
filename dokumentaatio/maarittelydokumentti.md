@@ -23,11 +23,11 @@ Sovellus koostuu valikosta ja itse pelistä. Kun sovelluksen käynnistää, auke
 
 ## Toiminnallisuus
 
-### Sovelluksen avatessaan
+#### Sovelluksen avatessaan
 
 - Voi valita helpon tai vaikean pelin
 
-### Pelatessa
+#### Pelatessa
 
 - Näkee peliruudukon
 - Voi valita ruudun, johon voi...
@@ -35,7 +35,7 @@ Sovellus koostuu valikosta ja itse pelistä. Kun sovelluksen käynnistää, auke
   - Poistaa numeron
 - Siirtyä valikkoon
 
-### Valikossa
+#### Valikossa
 
 - Voi palata takaisin peliin
 - Valita uuden helpon tai vaikean pelin
