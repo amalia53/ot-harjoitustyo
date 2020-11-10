@@ -13,7 +13,7 @@ Sovellus koostuu valikosta ja itse pelistä. Kun sovelluksen käynnistää, auke
 - (Painike: Jatka peliä) *jos peli on kesken*
 - Painike: Uusi peli
 
-### Pelinäkymässä:
+### Pelinäkymässä
 - Peliruudukko, josta jokaisen ruudun voi valita
 - Numerot 1-9, jotka voi valita täytettäväksi
 - Ruudun tyhjennys valinta
@@ -30,10 +30,9 @@ Sovellus koostuu valikosta ja itse pelistä. Kun sovelluksen käynnistää, auke
 ### Pelatessa
 
 - Näkee peliruudukon
-- Voi valita ruudun, jonka jälkeen voi...
-  - Lisätä ruutuun numeron
-  - Lisätä ruutuun muistiinpanon, kun muistiinpano on valittuna
-  - Poistaa ruudusta kaikki tieto eli numero tai muistiinpanot
+- Voi valita ruudun, johon voi...
+  - Lisätä numeron
+  - Poistaa numeron
 - Siirtyä valikkoon
 
 ### Valikossa
