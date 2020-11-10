@@ -44,10 +44,10 @@ Sovellus koostuu valikosta, pelistä ja voittonäkymästä. Kun sovelluksen käy
 
 #### Valikossa
 
-- Voi palata takaisin peliin
-- Valita uuden helpon tai vaikean pelin
+- Voi palata takaisin keskeneräiseen peliin
+- Valita uuden pelin
 
-#### Pelin loputtuessa
+#### Pelin loputtua
 
 - Peli loppuu, kun kaikissa ruuduissa on oikea numero
 - Voi katsoa valmista ruudukkoa
