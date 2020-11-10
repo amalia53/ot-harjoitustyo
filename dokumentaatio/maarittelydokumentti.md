@@ -21,7 +21,7 @@ Pelinäkymässä:
 -Ruudun tyhjennys valinta
 -Valikko-painike, josta siirrytään valikkoon
 
-![Hahmotelma käyttöliittymästä](kayttishahmotelma.pgn)
+![Hahmotelma käyttöliittymästä](kayttishahmotelma.png)
 
 ## Toiminnallisuus
 
