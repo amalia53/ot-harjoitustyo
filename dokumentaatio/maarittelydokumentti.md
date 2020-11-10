@@ -60,6 +60,8 @@ Perusversion jälkeen voidaan lisätä seuraavia toiminnallisuuksia:
 
 - Muistiinpanojen täyttäminen ruutuihin
 - Useampi vaikeusaste
+- Kello, joka kertoo kauanko käytetty aikaa tämän pelin pelaamiseen
+  - Paras aika ennätys
 - Asetukset, joissa voi...
   - Lisätä näkymään valitun ruudun pysty- ja vaakarivin korostamisen
   - Mahdollisuus vaihtaa yötilaan, jolloin tausta on tumma
