@@ -2,9 +2,9 @@
 
 Tästä **README**-tiedostosta löytyy linkit laskaritehtäviin ja *tietoa projektistani*.
 
-##Dokumentaatio
+## Dokumentaatio
 
-**[Työaikakirjanpito](https://github.com/amalia53/ot-harjoitustyo/blob/master/dokumentaatio/tyoaikakirjanpito)**
+**[Työaikakirjanpito](https://github.com/amalia53/ot-harjoitustyo/blob/master/dokumentaatio/tyoaikakirjanpito.md)**
 
 ## Laskarit viikko 1
 
