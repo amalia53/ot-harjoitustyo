@@ -24,6 +24,7 @@ Sovellus koostuu valikosta ja itse pelistä. Kun sovelluksen käynnistää, auke
 - Valmis peliruudukko
 - Onnitteluviesti
 - Painike: Uusi peli
+- Painike: Valikko
 
 ![Hahmotelma käyttöliittymästä](kayttisHahmotelma.png)
 
@@ -51,6 +52,7 @@ Sovellus koostuu valikosta ja itse pelistä. Kun sovelluksen käynnistää, auke
 - Peli loppuu, kun kaikissa ruuduissa on oikea numero
 - Voi katsoa valmista ruudukkoa
 - Aloittaa uuden pelin
+- Siirtyä valikkoon
 
 ## Jatkokehitysideoita
 
