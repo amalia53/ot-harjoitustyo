@@ -4,7 +4,7 @@ Tästä **README**-tiedostosta löytyy linkit laskaritehtäviin ja *tietoa proje
 
 ##Dokumentaatio
 
-**[Työaikakirjanpito]()**
+**[Työaikakirjanpito](https://github.com/amalia53/ot-harjoitustyo/blob/master/dokumentaatio/tyoaikakirjanpito)**
 
 ## Laskarit viikko 1
 
