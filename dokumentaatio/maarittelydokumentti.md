@@ -59,6 +59,7 @@ Sovellus koostuu valikosta, pelistä ja voittonäkymästä. Kun sovelluksen käy
 Perusversion jälkeen voidaan lisätä seuraavia toiminnallisuuksia:
 
 - Muistiinpanojen täyttäminen ruutuihin
+- Kumoa viimeisin toiminto peliin
 - Useampi vaikeusaste
 - Kello, joka kertoo kauanko käytetty aikaa tämän pelin pelaamiseen
   - Eri vaikeustasoila näkyvissä paras aika, jota voi yrittää voittaa
