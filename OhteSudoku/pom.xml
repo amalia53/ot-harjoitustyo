@@ -11,16 +11,32 @@
         <maven.compiler.target>11</maven.compiler.target>
     </properties>
     
-  <dependencyManagement>
     <dependencies>
     <dependency>
-        <groupId>org.openjfx</groupId>
-        <artifactId>javafx-controls</artifactId>
-        <version>12.0.2</version>
-    </dependency>
+    <groupId>org.openjfx</groupId>
+    <artifactId>javafx-controls</artifactId>
+    <version>11</version>
+</dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.3.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-params</artifactId>
+            <version>5.3.1</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.3.1</version>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
-  </dependencyManagement>
-    
+      
   <build>
     <plugins>
   <plugin>
@@ -28,7 +44,9 @@
     <artifactId>javafx-maven-plugin</artifactId>
     <version>0.0.3</version>
     <configuration>
-        <mainClass>org.openjfx.App</mainClass>
+        <release>${maven.compiler.release}</release>
+        <launcher>launcher</launcher>
+        <mainClass>sudoku.Main</mainClass>
     </configuration>
 </plugin>
   </plugins>
