@@ -10,7 +10,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class SudokuTest {
     
-    public SudokuTest() {
+    @Test
+    public void newSudokuGameIsCreated() {
+        sudoku.domain.SudokuGame game = new sudoku.domain.SudokuGame();
+        assertEquals(game.getCurrentGame().length, 0);
     }
+    
 
 }

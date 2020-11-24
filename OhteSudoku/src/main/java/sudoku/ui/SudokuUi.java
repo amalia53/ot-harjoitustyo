@@ -2,8 +2,10 @@
 package sudoku.ui;
 
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -15,7 +17,7 @@ import javafx.stage.Stage;
 
 public class SudokuUi extends Application {
     
-    public int selectedNumber;
+    sudoku.domain.SudokuGame game = new sudoku.domain.SudokuGame();
     
     private Scene menuScene;
     private Scene gameScene;
@@ -27,8 +29,14 @@ public class SudokuUi extends Application {
     private BorderPane menuPane;
     private Label menuLabel;
     private Button newGameButton;
-    private Button resumeButton;
     private VBox menuBox;
+    
+    //Gamemenu
+    private BorderPane gameMenuPane;
+    private Label gameMenuLabel;
+    private Button gameMenuNewGameButton;
+    private Button resumeButton;
+    private VBox gameMenuBox;
     
     //Game
     private BorderPane gamePane;
@@ -58,32 +66,146 @@ public class SudokuUi extends Application {
         menuPane.setCenter(menuBox);
         menuScene = new Scene(menuPane, 800, 900);
         
-        
         //Start a new game
-        sudoku.domain.ButtonActivity.pushButton(newGameButton, window, gameScene);
+        pushNewGameButton(window, newGameButton);
         
         //Game Scene
-        gamePane = new BorderPane();
-        sudokuGrid = new GridPane();
-        sudokuGrid.setPadding(new Insets(10));
-        sudokuGrid.setHgap(3);
-        sudokuGrid.setVgap(3);
+        createNewGame();        
+
+        //Game Menu Scene
+        gameMenuPane = new BorderPane();
+        gameMenuBox = new VBox();
+        gameMenuLabel = new Label("Valikko");
+        gameMenuNewGameButton = new Button("Uusi peli");
+        resumeButton = new Button("Jatka peliä");
+        gameMenuBox.getChildren().add(gameMenuLabel);
+        gameMenuBox.getChildren().add(resumeButton);
+        gameMenuBox.getChildren().add(gameMenuNewGameButton);
+        gameMenuBox.setSpacing(100);
+        gameMenuBox.setAlignment(Pos.CENTER);
+        gameMenuPane.setCenter(gameMenuBox);
+        gameMenuScene = new Scene(gameMenuPane, 800, 900);
+        pushButton(resumeButton, window, gameScene);
+        //pushNewGameButton(window, gameMenuNewGameButton);
+
+        
+        //Game Options
+        pushButton(gameMenuButton, window, gameMenuScene);
+        pushEraseButton(eraseButton); 
+        
+        
+        
+        window.setScene(menuScene);
+        window.show();
+    }
+    
+    public void createGrid() {
         for (int x=0; x<9; x++) {
             for (int y=0; y<9; y++) {
-                Button button = new Button(" ");
-                sudokuGrid.add(button, x, y);
+                int number = game.getNumberOnField(x, y);
+                int ordinal = (y)*9+x+1;
+                createButton(ordinal, x, y, number);
             }
         }
-        sudokuGrid.setScaleX(2);
-        sudokuGrid.setScaleY(2);
-        numbersBox = new HBox();
+    }
+    
+    //Buttons
+    
+    public void pushButton(Button button, Stage window, Scene scene) {
+        button.setOnAction((event) -> {
+           window.setScene(scene); 
+        });
+    }
+    
+    public void pushNewGameButton(Stage window, Button button) {
+        this.game.createGame();
+        button.setOnAction((event) -> {
+           window.setScene(gameScene);
+        });
+    }
+    
+    public void selectField(Button button) {
+        int id = Integer.valueOf(button.getId());
+        button.setOnAction((event)-> {
+            game.setSelectedField(id);
+        });
+    }
+    
+    public void pushNumberButton(Button button, int number) {
+        //check selected field
+        button.setOnAction((event)-> {
+            int id = game.getSelectedField();
+            int row = game.getSelectedRow();
+            int column = game.getSelectedColumn();
+            sudokuGrid.getChildren().remove(getNodeByRowColumn(row, column));
+            createButton(id, column, row, number);
+        });
+    }
+    
+    public void pushEraseButton(Button button) {
+        //check selected field
+        //can't erase numbers set by game
+        button.setOnAction((event)-> {
+            int id = game.getSelectedField();
+            int row = game.getSelectedRow();
+            int column = game.getSelectedColumn();
+            sudokuGrid.getChildren().remove(getNodeByRowColumn(row, column));
+            createEmptyButton(id, column, row);
+        });
+    }
+    
+    public Node getNodeByRowColumn (int row, int column) {
+        Node result = null;
+        ObservableList<Node> childrens = sudokuGrid.getChildren();
+
+        for (Node node : childrens) {
+            if(sudokuGrid.getRowIndex(node) == row && sudokuGrid.getColumnIndex(node) == column) {
+                result = node;
+                break;
+            }
+        }
+
+        return result;
+    }
+    
+
+    public void createButton(int id, int column, int row, int number) {
+        Button button = new Button("" + number);
+        button.setId("" + id);
+        sudokuGrid.add(button, column, row);
+        selectField(button);
+    }
+    
+    public void createEmptyButton(int id, int column, int row) {
+        Button newButton = new Button(" " + " ");
+        newButton.setId("" + id);
+        sudokuGrid.add(newButton, column, row);
+        selectField(newButton);
+    }
+    
+    
+    public void createNumberButtons() {
         for (int x=1; x<=9; x++) {
             Button button = new Button("" + x);
             button.setScaleX(2);
             button.setScaleY(2);
             numbersBox.getChildren().add(button);
-            sudoku.domain.ButtonActivity.pushNumberButton(button, x);
+            pushNumberButton(button, x);
         }
+    }
+        
+    public void createNewGame() {
+        gamePane = new BorderPane();
+        sudokuGrid = new GridPane();
+        sudokuGrid.setPadding(new Insets(10));
+        sudokuGrid.setHgap(3);
+        sudokuGrid.setVgap(3);
+        createGrid();     
+        sudokuGrid.setScaleX(2);
+        sudokuGrid.setScaleY(2);
+        numbersBox = new HBox();
+        createNumberButtons();
+        
         numbersBox.setSpacing(40);
         gameOptionsBox = new HBox();
         eraseButton = new Button("Poista");
@@ -100,25 +222,6 @@ public class SudokuUi extends Application {
         gamePane.setBottom(gameOptionsBox);
         gamePane.setCenter(gameBox);
         gameScene = new Scene(gamePane, 800, 900);
-        
-        //Game Menu Scene
-        
-        //sudoku.domain.ButtonActivity.pushButton(resumeButton, window, );
-        sudoku.domain.ButtonActivity.pushButton(newGameButton, window, gameScene);
-        
-        
-        //Go to menu
-        sudoku.domain.ButtonActivity.pushButton(gameMenuButton, window, menuScene);
-        
-        
-        
-        
-        
-        window.setScene(menuScene);
-        window.show();
     }
-    
-    
-    
     
 }
