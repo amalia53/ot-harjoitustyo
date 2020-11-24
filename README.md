@@ -12,16 +12,16 @@ Sudoku-sovellus
 
 Ohjelman voi suorittaa komennolla:
 
-mvn compile exec:java -Dexec.mainClass=sudoku.Main
+`mvn compile exec:java -Dexec.mainClass=sudoku.Main`
 
-#### Testaus
+### Testaus
 
 Testit voi suorittaa komennolla:
 
-mvn test
+`mvn test`
 
 Testikattavuuden voi suorittaa komennolla:
 
-mvn jacoco:report
+`mvn jacoco:report`
 
-#### Checkstyle
+### Checkstyle
