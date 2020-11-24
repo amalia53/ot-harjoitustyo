@@ -8,13 +8,13 @@ Sudoku-sovellus
 
 **[Määrittelydokumentti](https://github.com/amalia53/ot-harjoitustyo/blob/master/dokumentaatio/maarittelydokumentti.md)**
 
-##Komentorivi
+## Komentorivi
 
 Ohjelman voi suorittaa komennolla:
 
 mvn compile exec:java -Dexec.mainClass=sudoku.Main
 
-####Testaus
+#### Testaus
 
 Testit voi suorittaa komennolla:
 
@@ -24,4 +24,4 @@ Testikattavuuden voi suorittaa komennolla:
 
 mvn jacoco:report
 
-####Checkstyle
+#### Checkstyle
