@@ -126,7 +126,10 @@ public class SudokuUi extends Application {
     
     public void selectField(Button button) {
         int id = Integer.valueOf(button.getId());
+        int number = Integer.valueOf(button.getText());
         button.setOnAction((event)-> {
+            game.setSelectedNumber(number);
+            System.out.println(game.getSelectedNumber());
             game.setSelectedField(id);
         });
     }
@@ -139,6 +142,8 @@ public class SudokuUi extends Application {
             int column = game.getSelectedColumn();
             sudokuGrid.getChildren().remove(getNodeByRowColumn(row, column));
             createButton(id, column, row, number);
+            boolean correct = game.checkInputNumber(number, row, column);
+            System.out.println(correct);
         });
     }
     

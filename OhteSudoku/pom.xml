@@ -12,28 +12,10 @@
     </properties>
     
     <dependencies>
-    <dependency>
-    <groupId>org.openjfx</groupId>
-    <artifactId>javafx-controls</artifactId>
-    <version>11</version>
-</dependency>
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>5.3.1</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-params</artifactId>
-            <version>5.3.1</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.3.1</version>
-            <scope>test</scope>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>11</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -42,20 +24,51 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-      
+    
   <build>
     <plugins>
-  <plugin>
-    <groupId>org.openjfx</groupId>
-    <artifactId>javafx-maven-plugin</artifactId>
-    <version>0.0.3</version>
-    <configuration>
-        <release>${maven.compiler.release}</release>
-        <launcher>launcher</launcher>
-        <mainClass>sudoku.Main</mainClass>
+         <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>0.8.3</version>
+                <configuration>
+        <excludes>
+            <exclude>sudoku/ui/*</exclude>
+        </excludes>
     </configuration>
-</plugin>
-  </plugins>
-  </build>
+            <executions>
+                <execution>
+                    <id>default-prepare-agent</id>
+                    <goals>
+                        <goal>prepare-agent</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+        <plugin>
+        <groupId>org.openjfx</groupId>
+        <artifactId>javafx-maven-plugin</artifactId>
+        <version>0.0.3</version>
+        <configuration>
+            <release>${maven.compiler.release}</release>
+            <launcher>launcher</launcher>
+            <mainClass>sudoku.Main</mainClass>
+        </configuration>
+        </plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-checkstyle-plugin</artifactId>
+            <version>2.17</version>
+            <configuration>
+              <configLocation>checkstyle.xml</configLocation>
+            </configuration>
+        </plugin>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jxr-plugin</artifactId>
+            <version>2.5</version>
+        </plugin>
+    </plugins>
+    </build>
   
 </project>
