@@ -25,3 +25,7 @@ Testikattavuuden voi suorittaa komennolla:
 `mvn jacoco:report`
 
 ### Checkstyle
+
+Checkstylen voi suorittaa komennolla:
+
+`mvn jxr:jxr checkstyle:checkstyle`
