@@ -6,5 +6,5 @@
 |17.11.|8 h|Projektin luominen ja käyttöliittymän koodaamista|
 |22.11.|3 h|Sudokugridin kehittämistä|
 |23.11.|6 h|Toiminnallisuudet poistaa ja lisätä numeroita|
-|24.11.|5 h|Checkyour style ja testit|
+|24.11.|5 h|Checkstyle ja testit|
 
