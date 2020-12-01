@@ -67,10 +67,9 @@ public class SudokuUi extends Application {
         menuScene = new Scene(menuPane, 800, 900);
         
         //Start a new game
-        pushNewGameButton(window, newGameButton);
-        
-        //Game Scene
-        createNewGame();        
+        this.game.createGame();
+        createNewGame();
+        pushNewGameButton(window, newGameButton);       
 
         //Game Menu Scene
         gameMenuPane = new BorderPane();
@@ -118,7 +117,6 @@ public class SudokuUi extends Application {
     }
     
     public void pushNewGameButton(Stage window, Button button) {
-        this.game.createGame();
         button.setOnAction((event) -> {
            window.setScene(gameScene);
         });
@@ -182,7 +180,7 @@ public class SudokuUi extends Application {
     }
     
     public void createEmptyButton(int id, int column, int row) {
-        Button newButton = new Button(" " + " ");
+        Button newButton = new Button("0");
         newButton.setId("" + id);
         sudokuGrid.add(newButton, column, row);
         selectField(newButton);
