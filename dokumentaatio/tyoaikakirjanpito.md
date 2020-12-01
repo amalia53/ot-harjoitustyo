@@ -7,4 +7,6 @@
 |22.11.|3 h|Sudokugridin kehittämistä ja testien kirjoittamista|
 |23.11.|6 h|Toiminnallisuudet poistaa ja lisätä numeroita|
 |24.11.|5 h|Checkstyle ja testejä|
+|1.12. |9 h|Checkstylen tarkistus, sudokun luomisalgoritmin kirjotus|
+|Yht.| 35 h|
 
