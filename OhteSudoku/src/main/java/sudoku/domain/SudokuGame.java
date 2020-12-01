@@ -27,9 +27,10 @@ public class SudokuGame {
         //Creates a possible solution
         List<Integer> numbers = new ArrayList<Integer>();
         for (int row = 0; row < 9; row++) {
-            for (int i = 1; i <=9; i++) {
+            for (int i = 1; i <= 9; i++) {
                 numbers.add(i);
-            } Collections.shuffle(numbers);
+            } 
+            Collections.shuffle(numbers);
             for (int col = 0; col < 9; col++) {
                 int number = getPossibleNumber(row, col, numbers);
                 if (number == -1) {
@@ -39,7 +40,8 @@ public class SudokuGame {
                     solution[col][row] = number;
                 }
             }
-        } return this.solution;
+        } 
+        return this.solution;
     }
     
     public int getPossibleNumber(int row, int col, List<Integer> numbers) {
@@ -51,7 +53,8 @@ public class SudokuGame {
                 numbers.remove(i);
                 return number;
             }
-        } return -1;
+        } 
+        return -1;
     }
     
     public boolean checkCol(int row, int col, int number) {
@@ -63,27 +66,17 @@ public class SudokuGame {
             if (number == numberOnField) {
                 return false;
             }
-        } return true;
+        } 
+        return true;
         
     }
     
     public boolean checkSquare(int row, int col, int number) {
         int a = 0;
         int b = 0;
-        if ((row + 1) % 3 == 0) {
-            a = row - 2;  
-        } if ((row + 2) % 3 == 0) {
-            a = row - 1;
-        } if (row % 3 == 0) {
-            a = row;
-        }
-        if ((col + 1) % 3 == 0) {
-            b = col - 2;  
-        } if ((col + 2) % 3 == 0) {
-            b = col - 1;
-        } if (col % 3 == 0) {
-            b = col;
-        } if (row % 3 != 0) {
+        a = checkStartPoint(a, row);
+        b = checkStartPoint(b, col);
+        if (row % 3 != 0) {
             for (int x = a; x < row; x++) {
                 for (int y = b; y < b + 3; y++) {
                     int numberOnField = this.solution[y][x];
@@ -92,14 +85,29 @@ public class SudokuGame {
                     }
                 }
             }
-        } if (col > 0) {
+        } 
+        if (col > 0) {
             for (int y = b; y < col; y++) {
                 int numberOnField = this.solution[y][row];
                 if (numberOnField == number) {
                     return false;
                 }
             }
-        } return true;
+        } 
+        return true;
+    }
+    
+    public int checkStartPoint(int a, int rowcol) {
+        if ((rowcol + 1) % 3 == 0) {
+            a = rowcol - 2;  
+        } 
+        if ((rowcol + 2) % 3 == 0) {
+            a = rowcol - 1;
+        } 
+        if (rowcol % 3 == 0) {
+            a = rowcol;
+        }
+        return a;
     }
     
     public int[][] createGame() {
