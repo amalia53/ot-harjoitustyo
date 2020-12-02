@@ -1,5 +1,7 @@
 
 
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -19,8 +21,8 @@ public class SudokuTest {
     }
     
     @Test
-    public void createSolutionReturnsTable() {
-        int[][] solution = game.createSolution();
+    public void createGameReturnsTable() {
+        int[][] solution = game.createGame();
         assertEquals(solution.length, 9);
     }
     
@@ -56,15 +58,55 @@ public class SudokuTest {
     }
     
     @Test
-    public void checkInputNumberReturnsTrueWhenCorrect() {
+    public void checkInputNumberTrueWhenCorrect() {
         game.createGame();
-        assertEquals(game.checkInputNumber(5, 0, 0), true);
+        assertEquals(game.checkInputNumber(game.getNumberOnField(0, 0), 0, 0), true);
     }
     
     @Test
-    public void checkInputNumberReturnsFalseWhenIncorrect() {
+    public void checkInputNumberFalseWhenIncorrect() {
         game.createGame();
-        assertEquals(game.checkInputNumber(6, 0, 0), false);
+        assertEquals(game.checkInputNumber(game.getNumberOnField(0, 0)-1, 0, 0), false);
     }
-
+    
+    @Test
+    public void checkEarlierRowsTrueWhenNumberNotFound() {
+        game.createGame();
+        assertEquals(game.checkEarlierRows(0, 0, 0, 10), true);
+    }
+    
+    @Test
+    public void checkStartPointReturns0() {
+        assertEquals(game.checkStartPoint(2), 0);
+    }
+    
+    @Test
+    public void checkStartPointReturns3() {
+        assertEquals(game.checkStartPoint(3), 3);
+    }
+    
+    @Test
+    public void checkStartPointReturns6() {
+        assertEquals(game.checkStartPoint(7), 6);
+    }
+    
+    @Test
+    public void checkColTrueWhenRow0() {
+        assertEquals(game.checkCol(0, 3, 7), true);
+    }
+    
+    @Test
+    public void getPossibleNumberReturnsNumberFromList() {
+        List<Integer> numbers = new ArrayList<>();
+        numbers.add(1);
+        assertEquals(game.getPossibleNumber(0, 0, numbers), 1);
+    }
+    
+    @Test
+    public void getPossibleNumberRemovesNumberFromList() {
+        List<Integer> numbers = new ArrayList<>();
+        numbers.add(1);
+        game.getPossibleNumber(0, 0, numbers);
+        assertEquals(numbers.size(), 0);
+    }
 }

@@ -25,7 +25,7 @@ public class SudokuGame {
     
     public int[][] createSolution() {
         //Creates a possible solution
-        List<Integer> numbers = new ArrayList<Integer>();
+        List<Integer> numbers = new ArrayList<>();
         for (int row = 0; row < 9; row++) {
             for (int i = 1; i <= 9; i++) {
                 numbers.add(i);
@@ -72,19 +72,13 @@ public class SudokuGame {
     }
     
     public boolean checkSquare(int row, int col, int number) {
+        boolean check = true;
         int a = 0;
         int b = 0;
-        a = checkStartPoint(a, row);
-        b = checkStartPoint(b, col);
+        a = checkStartPoint(row);
+        b = checkStartPoint(col);
         if (row % 3 != 0) {
-            for (int x = a; x < row; x++) {
-                for (int y = b; y < b + 3; y++) {
-                    int numberOnField = this.solution[y][x];
-                    if (number == numberOnField) {
-                        return false;
-                    }
-                }
-            }
+            check = checkEarlierRows(a, b, row, number);
         } 
         if (col > 0) {
             for (int y = b; y < col; y++) {
@@ -94,10 +88,11 @@ public class SudokuGame {
                 }
             }
         } 
-        return true;
+        return check;
     }
     
-    public int checkStartPoint(int a, int rowcol) {
+    public int checkStartPoint(int rowcol) {
+        int a = 0;
         if ((rowcol + 1) % 3 == 0) {
             a = rowcol - 2;  
         } 
@@ -108,6 +103,18 @@ public class SudokuGame {
             a = rowcol;
         }
         return a;
+    }
+    
+    public boolean checkEarlierRows(int a, int b, int row, int number) {
+        for (int x = a; x < row; x++) {
+            for (int y = b; y < b + 3; y++) {
+                int numberOnField = this.solution[y][x];
+                if (number == numberOnField) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
     
     public int[][] createGame() {
