@@ -106,7 +106,7 @@ public class SudokuGame {
     
     public void removeNumberFromSolution() {
         int row = random();
-        int col= random();
+        int col = random();
         if (start[col][row] != 0) {
             start[col][row] = 0;
         }
