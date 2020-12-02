@@ -12,7 +12,7 @@ Sudoku-sovellus
 
 ## Releaset
 
-**[Viikko 5](https://github.com/amalia53/ot-harjoitustyo/releases/tag/Viikko5)
+**[Viikko 5](https://github.com/amalia53/ot-harjoitustyo/releases/tag/Viikko5)**
 
 ## Komentorivi
 
