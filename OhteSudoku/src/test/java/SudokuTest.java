@@ -58,12 +58,6 @@ public class SudokuTest {
     }
     
     @Test
-    public void checkInputNumberTrueWhenCorrect() {
-        game.createGame();
-        assertEquals(game.checkInputNumber(game.getNumberOnField(0, 0), 0, 0), true);
-    }
-    
-    @Test
     public void checkInputNumberFalseWhenIncorrect() {
         game.createGame();
         assertEquals(game.checkInputNumber(game.getNumberOnField(0, 0)-1, 0, 0), false);
@@ -108,5 +102,24 @@ public class SudokuTest {
         numbers.add(1);
         game.getPossibleNumber(0, 0, numbers);
         assertEquals(numbers.size(), 0);
+    }
+    
+    @Test
+    public void randomReturnsNumberBetween0And8() {
+        int random = game.random();
+        boolean between = false;
+        if (random >= 0 && random < 9) {
+            between = true;
+        }
+        assertEquals(between, true);
+    }
+    
+    @Test
+    public void copyTableCopiesTable() {
+        int[][] original = new int[9][9];
+        original[0][0] = 1;
+        int[][] copy = new int[9][9];
+        game.copyTable(original, copy);
+        assertEquals(original[0][0], copy[0][0]);
     }
 }

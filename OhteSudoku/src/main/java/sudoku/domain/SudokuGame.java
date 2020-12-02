@@ -4,6 +4,7 @@ package sudoku.domain;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 
 public class SudokuGame {
@@ -21,6 +22,102 @@ public class SudokuGame {
         this.solution = new int[9][9];
         this.start = new int[9][9];
         this.game = new int[9][9];
+    }
+    
+    public int[][] createGame() {
+        while (createSolution() == null) {
+            createSolution();
+        }
+        start = copyTable(solution, start);
+        for (int i = 0; i < 30; i++) {
+            removeNumberFromSolution();
+        }
+        game = copyTable(start, game);
+        return this.start;
+    }
+    
+    public int[][] copyTable(int[][] original, int[][] copy) {
+        for (int x = 0; x < 9; x++) {
+            for (int y = 0; y < 9; y++) {
+                copy[y][x] = original[y][x];
+            }
+        }
+        return copy;
+    }
+    
+    public int[][] getCurrentGame() {
+        return this.game;
+    }
+    
+    public void addToGame(int col, int row, int number) {
+        game[col][row] = number;
+        System.out.println("Current game:");
+        toString(game);
+    }
+    
+    public void setSelectedNumber(int number) {
+        this.selectedNumber = number;
+    }
+    
+    public int getSelectedNumber() {
+        return this.selectedNumber;
+    }
+    
+    public void setSelectedField(int id) {
+        this.selectedField = id;
+        this.selectedColumn = (id - 1) % 9;
+        this.selectedRow = (id - selectedColumn) / 9;
+        System.out.println("ID: " + selectedField + " Column: " + selectedColumn + " Row: " + selectedRow);
+    }
+    
+    public int getSelectedField() {
+        return this.selectedField; 
+    }
+    
+    public int getSelectedRow() {
+        return this.selectedRow; 
+    }
+    
+    public int getSelectedColumn() {
+        return this.selectedColumn; 
+    }
+    
+    public boolean checkIfOriginalNumber(int col, int row) {
+        return start[col][row] != 0;
+    }
+        
+    public boolean checkInputNumber(int number, int row, int col) {
+        //check if input matches solution
+        return number == solution[col][row];
+    }
+    
+    public int getNumberOnField(int x, int y) {
+        return this.game[y][x];
+    }
+   
+    public void toString(int[][] game) {
+        for (int x = 0; x < 9; x++) {
+            String rowToString = "";
+            for (int y = 0; y < 9; y++) {
+                rowToString = rowToString + game[x][y];
+            } System.out.println(rowToString);
+        }
+    }
+    
+    public void removeNumberFromSolution() {
+        int row = random();
+        int col= random();
+        if (start[col][row] != 0) {
+            start[col][row] = 0;
+        }
+        //Test if still solvable after removing number
+    }
+    
+    public int random() {
+        Random random = new Random();
+        int randomNumber = random.nextInt(9);
+        return randomNumber;
+
     }
     
     public int[][] createSolution() {
@@ -115,66 +212,5 @@ public class SudokuGame {
             }
         }
         return true;
-    }
-    
-    public int[][] createGame() {
-        while (createSolution() == null) {
-            createSolution();
-        }
-        this.start = this.solution;
-        this.game = this.start;
-        return this.start;
-    }
-    
-    public int[][] getCurrentGame() {
-        return this.game;
-    }
-    
-    
-    
-    public void setSelectedNumber(int number) {
-        this.selectedNumber = number;
-    }
-    
-    public int getSelectedNumber() {
-        return this.selectedNumber;
-    }
-    
-    public void setSelectedField(int id) {
-        this.selectedField = id;
-        this.selectedColumn = (id - 1) % 9;
-        this.selectedRow = (id - selectedColumn) / 9;
-        System.out.println("ID: " + selectedField + " Column: " + selectedColumn + " Row: " + selectedRow);
-    }
-    
-    public int getSelectedField() {
-        return this.selectedField; 
-    }
-    
-    public int getSelectedRow() {
-        return this.selectedRow; 
-    }
-    
-    public int getSelectedColumn() {
-        return this.selectedColumn; 
-    }
-    
-        
-    public boolean checkInputNumber(int number, int row, int column) {
-        //check if input matches solution
-        return number == solution[row][column];
-    }
-    
-    public int getNumberOnField(int x, int y) {
-        return this.game[y][x];
-    }
-   
-    public void toString(int[][] game) {
-        for (int x = 0; x < 9; x++) {
-            String rowToString = "";
-            for (int y = 0; y < 9; y++) {
-                rowToString = rowToString + game[y][x];
-            } System.out.println(rowToString);
-        }
     }
 }

@@ -138,10 +138,14 @@ public class SudokuUi extends Application {
             int id = game.getSelectedField();
             int row = game.getSelectedRow();
             int column = game.getSelectedColumn();
-            sudokuGrid.getChildren().remove(getNodeByRowColumn(row, column));
-            createButton(id, column, row, number);
-            boolean correct = game.checkInputNumber(number, row, column);
-            System.out.println(correct);
+            System.out.println(game.checkIfOriginalNumber(row, column));
+            if (game.checkIfOriginalNumber(row, column) == false) {
+                sudokuGrid.getChildren().remove(getNodeByRowColumn(row, column));
+                createButton(id, column, row, number);
+                game.addToGame(row, column, number);
+                boolean correct = game.checkInputNumber(number, row, column);
+                System.out.println(correct);
+            }
         });
     }
     
@@ -152,8 +156,10 @@ public class SudokuUi extends Application {
             int id = game.getSelectedField();
             int row = game.getSelectedRow();
             int column = game.getSelectedColumn();
-            sudokuGrid.getChildren().remove(getNodeByRowColumn(row, column));
-            createEmptyButton(id, column, row);
+            if (game.checkIfOriginalNumber(row, column) == false) {
+                sudokuGrid.getChildren().remove(getNodeByRowColumn(row, column));
+                createEmptyButton(id, column, row);
+            }
         });
     }
     
