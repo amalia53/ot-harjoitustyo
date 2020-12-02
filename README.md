@@ -10,6 +10,10 @@ Sudoku-sovellus
 
 **[Arkkitehtuuri](https://github.com/amalia53/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)**
 
+## Releaset
+
+**[Viikko 5](https://github.com/amalia53/ot-harjoitustyo/releases/tag/Viikko5)
+
 ## Komentorivi
 
 Ohjelman voi suorittaa komennolla:
