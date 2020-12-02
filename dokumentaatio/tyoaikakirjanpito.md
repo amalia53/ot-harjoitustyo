@@ -8,5 +8,6 @@
 |23.11.|6 h|Toiminnallisuudet poistaa ja lisätä numeroita|
 |24.11.|5 h|Checkstyle ja testejä|
 |1.12. |9 h|Checkstylen tarkistus, sudokun luomisalgoritmin kirjotus|
-|Yht.| 35 h|
+|2.12. |5 h|Testejä, sudokun edistämistä. Sekvenssikaavio ja release|
+|Yht.| 40 h|
 
