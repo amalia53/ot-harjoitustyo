@@ -32,27 +32,27 @@ Sovellus koostuu valikosta, pelistä ja voittonäkymästä. Kun sovelluksen käy
 
 #### Sovelluksen avatessaan
 
-- Voi valita aloittaa uuden pelin
+- Voi valita aloittaa uuden pelin (Tehty)
 
 #### Pelatessa
 
-- Näkee peliruudukon
-- Voi valita ruudun, johon voi...
-  - Lisätä numeron
-  - Poistaa numeron
-- Siirtyä valikkoon
+- Näkee peliruudukon (Tehty)
+- Voi valita ruudun, johon voi... (Tehty)
+  - Lisätä numeron (Tehty)
+  - Poistaa numeron (Tehty)
+- Siirtyä valikkoon (Tehty)
 
 #### Valikossa
 
-- Voi palata takaisin keskeneräiseen peliin
-- Valita uuden pelin
+- Voi palata takaisin keskeneräiseen peliin (Tehty)
+- Valita uuden pelin (Tehty)
 
 #### Pelin loputtua
 
-- Peli loppuu, kun kaikissa ruuduissa on oikea numero
-- Voi katsoa valmista ruudukkoa
-- Aloittaa uuden pelin
-- Siirtyä valikkoon
+- Peli loppuu, kun kaikissa ruuduissa on oikea numero (Tehty)
+- Voi katsoa valmista ruudukkoa (Tehty)
+- Aloittaa uuden pelin (Tehty)
+- Siirtyä valikkoon (Tehty)
 
 ## Jatkokehitysideoita
 
@@ -65,4 +65,3 @@ Perusversion jälkeen voidaan lisätä seuraavia toiminnallisuuksia:
   - Eri vaikeustasoila näkyvissä paras aika, jota voi yrittää voittaa
 - Asetukset, joissa voi...
   - Lisätä näkymään valitun ruudun pysty- ja vaakarivin korostamisen
-  - Mahdollisuus vaihtaa yötilaan, jolloin tausta on tumma
