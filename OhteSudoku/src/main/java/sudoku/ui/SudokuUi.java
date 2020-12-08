@@ -51,14 +51,21 @@ public class SudokuUi extends Application {
         
         //Start Menu Scene
         menuPane = new BorderPane();
+        Label sudokuLabel = new Label ("SUDOKU");
+        sudokuLabel.setFont(Font.font("Arial", 70));
         menuBox = new VBox();
         menuLabel = new Label("Valikko");
+        menuLabel.setFont(Font.font("Arial", 40));
+        menuBox.getChildren().addAll(sudokuLabel, menuLabel);
+        menuBox.setSpacing(50);
         newGameButton = new Button("Uusi peli");
-        menuBox.getChildren().add(menuLabel);
-        menuBox.getChildren().add(newGameButton);
-        menuBox.setSpacing(100);
+        menuBox.setAlignment(Pos.TOP_CENTER);
+        menuBox.setPadding(new Insets (80, 0, 0, 0));
         menuBox.setAlignment(Pos.CENTER);
-        menuPane.setCenter(menuBox);
+        menuPane.setCenter(newGameButton);
+        menuPane.setTop(menuBox);
+        newGameButton.setScaleX(2);
+        newGameButton.setScaleY(2);
         menuScene = new Scene(menuPane, 800, 900);
         
         //Start a new game     
@@ -78,7 +85,7 @@ public class SudokuUi extends Application {
                     createEmptyButton(sudokuGrid, id, x, y);
                 } else {
                     Button button = createButton(sudokuGrid, id, x, y, number);
-                    button.setStyle("-fx-font-weight: bold");
+                    button.setStyle("-fx-font-weight: bold; -fx-background-color: white; -fx-border-color: black");
                 }
             }
         }
@@ -162,6 +169,7 @@ public class SudokuUi extends Application {
 
     public Button createButton(GridPane sudokuGrid, int id, int column, int row, int number) {
         Button button = new Button("" + number);
+        button.setStyle("-fx-background-color: white; -fx-border-color: black");
         button.setId("" + id);
         sudokuGrid.add(button, column, row);
         selectField(button);
@@ -171,6 +179,7 @@ public class SudokuUi extends Application {
     
     public void createEmptyButton(GridPane sudokuGrid, int id, int column, int row) {
         Button newButton = new Button("  ");
+        newButton.setStyle("-fx-background-color: white; -fx-border-color: black");
         newButton.setId("" + id);
         sudokuGrid.add(newButton, column, row);
         selectField(newButton);
@@ -210,6 +219,10 @@ public class SudokuUi extends Application {
         winLabel = new Label("Voitit pelin! Onneksi olkoon!");
         winNewGame = new Button("Uusi peli");
         winMenu = new Button("Valikko");
+        winMenu.setScaleX(1.8);
+        winMenu.setScaleY(1.8);
+        winNewGame.setScaleX(1.8);
+        winNewGame.setScaleY(1.8);
         HBox winLabelBox = new HBox();
         winLabelBox.getChildren().add(winLabel);
         winBox.getChildren().add(winNewGame);
@@ -231,19 +244,23 @@ public class SudokuUi extends Application {
     public void createNewGame(Stage window) {
         BorderPane gamePane = new BorderPane();
         GridPane sudokuGrid = new GridPane();
-        sudokuGrid.setPadding(new Insets(10));
+        //sudokuGrid.setPadding(new Insets(10));
         sudokuGrid.setHgap(3);
         sudokuGrid.setVgap(3);
         createGrid(sudokuGrid);     
-        sudokuGrid.setScaleX(2);
-        sudokuGrid.setScaleY(2);
+        sudokuGrid.setScaleX(1.8);
+        sudokuGrid.setScaleY(1.8);
         HBox numbersBox = new HBox();
         createNumberButtons(window, sudokuGrid, numbersBox);
         
         numbersBox.setSpacing(40);
         VBox gameOptionsBox = new VBox();
         Button eraseButton = new Button("Poista");
+        eraseButton.setScaleX(1.4);
+        eraseButton.setScaleY(1.4);
         Button gameMenuButton = new Button("Valikko");
+        gameMenuButton.setScaleX(1.8);
+        gameMenuButton.setScaleY(1.8);
         gameOptionsBox.getChildren().addAll(gameMenuButton);
         gameOptionsBox.setPadding(new Insets(0, 0, 50, 0));
         sudokuGrid.setAlignment(Pos.CENTER);     
@@ -251,6 +268,7 @@ public class SudokuUi extends Application {
         VBox gameBox = new VBox();
         VBox box = new VBox();
         gameBox.getChildren().addAll(sudokuGrid, numbersBox);
+        gameBox.setPadding(new Insets(60, 0, 0, 0));
         box.getChildren().addAll(gameBox, eraseButton);
         gameBox.setAlignment(Pos.BOTTOM_CENTER);
         gameBox.setSpacing(180);
