@@ -33,6 +33,7 @@ Sovellus koostuu valikosta, pelistä ja voittonäkymästä. Kun sovelluksen käy
 #### Sovelluksen avatessaan
 
 - Voi valita aloittaa uuden pelin (Tehty)
+   -aukeaa uusi generoitu peli
 
 #### Pelatessa
 
