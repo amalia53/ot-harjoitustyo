@@ -37,3 +37,17 @@ Testikattavuuden voi suorittaa komennolla:
 Checkstylen voi suorittaa komennolla:
 
 `mvn jxr:jxr checkstyle:checkstyle`
+
+### Jar
+
+Suoritettavan jarin voi luoda komennolla:
+
+`mvn package`
+
+### Javadoc
+
+Javadocin voi luoda komennolla:
+
+`mvn javadoc:javadoc`
+
+
