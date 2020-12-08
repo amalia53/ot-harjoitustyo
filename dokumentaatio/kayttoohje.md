@@ -1,6 +1,10 @@
 ## Käyttöohje
 
-### Ohjelan käynnistäminen 
+### Ohjelman käynnistäminen 
+
+Ohjelman voi käynnistää komennolla:
+
+`java -jar OhteSudoku.jar`
 
 ### Pelin aloittaminen
 
