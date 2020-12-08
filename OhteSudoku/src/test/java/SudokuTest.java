@@ -21,12 +21,6 @@ public class SudokuTest {
     }
     
     @Test
-    public void createGameReturnsTable() {
-        int[][] solution = game.createGame();
-        assertEquals(solution.length, 9);
-    }
-    
-    @Test
     public void setSelectedFieldSetsField() {
         game.setSelectedField(30);
         assertEquals(game.getSelectedField(), 30);
@@ -49,18 +43,6 @@ public class SudokuTest {
         game.createGame();
         int number = game.getNumberOnField(5, 3);
         assertEquals(number, game.getCurrentGame()[3][5]);
-    }
-    
-    @Test
-    public void getSelectedFieldNumberGivesCorrectNumber() {
-        game.setSelectedNumber(5);
-        assertEquals(game.getSelectedNumber(),5);
-    }
-    
-    @Test
-    public void checkInputNumberFalseWhenIncorrect() {
-        game.createGame();
-        assertEquals(game.checkInputNumber(game.getNumberOnField(0, 0)-1, 0, 0), false);
     }
     
     @Test
