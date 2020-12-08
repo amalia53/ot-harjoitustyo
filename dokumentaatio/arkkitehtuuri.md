@@ -2,7 +2,7 @@
 
 ## Rakenne
 
-![luokkakaavio](kaavio.jpg =100x50)
+![luokkakaavio](kaavio.jpg =100)
 
 dao-kansioon tulee ennätysaikojen tallennukset, kun lisään tämän lisätoiminnalisuuden. Nyt se on tyhjä.
 
