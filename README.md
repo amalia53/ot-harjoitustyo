@@ -10,6 +10,8 @@ Sudoku-sovellus
 
 **[Arkkitehtuuri](https://github.com/amalia53/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)**
 
+**[Käyttöohje](https://github.com/amalia53/ot-harjoitustyo/blob/master/dokumentaatio/kayttoohje.md)**
+
 ## Releaset
 
 **[Viikko 5](https://github.com/amalia53/ot-harjoitustyo/releases/tag/Viikko5)**
