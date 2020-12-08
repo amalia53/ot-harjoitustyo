@@ -9,5 +9,6 @@
 |24.11.|5 h|Checkstyle ja testejä|
 |1.12. |9 h|Checkstylen tarkistus, sudokun luomisalgoritmin kirjotus|
 |2.12. |5 h|Testejä, sudokun edistämistä. Sekvenssikaavio ja release|
-|Yht.| 40 h|
+|7.12. |6 h|Ulkoasun korjausta, pelin voittamisen lisäys|
+|Yht.| 46 h|
 
