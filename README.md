@@ -16,6 +16,8 @@ Sovelluksessani voi pelata klassista sudoku-peliä, jossa pelaajan tulee täytt�
 
 **[Viikko 5](https://github.com/amalia53/ot-harjoitustyo/releases/tag/Viikko5)**
 
+**[Viikko 6](https://github.com/amalia53/ot-harjoitustyo/releases/tag/Viikko6)**
+
 ## Komentorivi
 
 Ohjelman voi suorittaa komennolla:
