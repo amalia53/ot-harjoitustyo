@@ -122,4 +122,23 @@ public class SudokuTest {
         game.copyTable(original, copy);
         assertEquals(original[0][0], copy[0][0]);
     }
+    
+    @Test
+    public void checkIfDoneReturnsFalse() {
+        game.createGame();
+        assertEquals(game.checkIfDone(), false);
+    }
+    
+    @Test
+    public void checkIfDoneReturnsTrue() {
+        game.createGame();
+        for (int x = 0; x < 9; x++) {
+            for (int y = 0; y < 9; y++) {
+                if (game.getNumberOnField(x, y) == 0) {
+                    game.addToGame(y, x, game.getNumberOnSolution(y, x));
+                } 
+            } 
+        }
+        assertEquals(game.checkIfDone(), true);
+    }
 }

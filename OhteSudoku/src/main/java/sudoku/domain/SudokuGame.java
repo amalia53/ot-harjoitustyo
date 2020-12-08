@@ -29,7 +29,7 @@ public class SudokuGame {
             createSolution();
         }
         start = copyTable(solution, start);
-        for (int i = 0; i < 40; i++) {
+        for (int i = 0; i < 50; i++) {
             removeNumberFromSolution();
         }
         game = copyTable(start, game);
@@ -88,6 +88,10 @@ public class SudokuGame {
         //check if input matches solution
         System.out.println("Correct: " + solution[col][row]);
         return number == solution[col][row];
+    }
+    
+    public int getNumberOnSolution(int row, int column) {
+        return solution[row][column];
     }
     
     public boolean checkIfDone() {
