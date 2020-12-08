@@ -33,7 +33,7 @@ public class SudokuGame {
             createSolution();
         }
         start = copyTable(solution, start);
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 40; i++) {
             removeNumberFromSolution();
         }
         game = copyTable(start, game);
