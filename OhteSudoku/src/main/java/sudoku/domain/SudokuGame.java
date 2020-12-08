@@ -29,7 +29,7 @@ public class SudokuGame {
             createSolution();
         }
         start = copyTable(solution, start);
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < 40; i++) {
             removeNumberFromSolution();
         }
         game = copyTable(start, game);
@@ -51,8 +51,6 @@ public class SudokuGame {
     
     public void addToGame(int col, int row, int number) {
         game[col][row] = number;
-        System.out.println("Current game:");
-        toString(game);
     }
     
     public void setSelectedNumber(int number) {
@@ -88,7 +86,24 @@ public class SudokuGame {
         
     public boolean checkInputNumber(int number, int row, int col) {
         //check if input matches solution
+        System.out.println("Correct: " + solution[col][row]);
         return number == solution[col][row];
+    }
+    
+    public boolean checkIfDone() {
+        int correct = 0;
+        for (int x = 0; x < 9; x++) {
+            for (int y = 0; y < 9; y++) {
+                if (game[x][y] == solution[x][y]) {
+                    correct++;
+                }
+            }
+        }
+        boolean done = false;
+        if (correct == 81) {
+            done = true;
+        }
+        return done;
     }
     
     public int getNumberOnField(int x, int y) {
