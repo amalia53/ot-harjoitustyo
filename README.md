@@ -1,6 +1,6 @@
 # Ohte-projekti
 
-Sudoku-sovellus
+Sovelluksessani voi pelata klassista sudoku-peliä, jossa pelaajan tulee täyttä 9x9 -ruudukko, niin että jokainen vaaka- ja pystyrivi sekä 3x3 -osaruudukko sisältää yhden jokaista numeroa 1-9 välillä.
 
 ## Dokumentaatio
 
@@ -9,6 +9,8 @@ Sudoku-sovellus
 **[Määrittelydokumentti](https://github.com/amalia53/ot-harjoitustyo/blob/master/dokumentaatio/maarittelydokumentti.md)**
 
 **[Arkkitehtuuri](https://github.com/amalia53/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)**
+
+**[Käyttöohje](https://github.com/amalia53/ot-harjoitustyo/blob/master/dokumentaatio/kayttoohje.md)**
 
 ## Releaset
 
