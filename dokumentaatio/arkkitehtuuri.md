@@ -18,7 +18,7 @@ Käyttöliittymässä on neljä erillaista näkymää, jotka ovat toteutettu Sce
 
 Käyttöliittymässä luodaan olio sudoku.domain.SudokuGame, jonka avulla kutsutaan tämän metodeja.
 
-Käyttöliittymän kautta pelaaja voi aloittaa uuden pelin, lisätä ja poistaa numeroita sudokupelistä ja kulkea valikon ja peli- tai voittonäkymän välillä.
+Käyttöliittymän kautta sovelluslogiikkaa kutsumalla pelaaja voi aloittaa uuden pelin, lisätä ja poistaa numeroita sudokupelistä. Lisäksi käyttöliittymässä voidaan liikkua valikosta pelinäkymään, pelistä pelivalikkoon, pelivalikosta käynnissä olevaan peliin tai uuteen peliin ja voittonäkymästä joko uuteen peliin tai valikkoon.
 
 ## Sovelluslogiikka
 
@@ -26,15 +26,18 @@ Sovelluslogiikka on toteutettu luokissa sudoku.domain.SudokuGame ja sudoku.domai
 
 Pelin luomisesta vastaavia tärkeimpiä metodeja ovat muunmuaassa...
 - createSolution()
-- getPossibleNumber()
 - removeNumberFromSolution()
 - createGame()
+- getNumberOnField(int row, int col)
+
+Käyttöliittymä kutsuu metodia createGame(), kun valitaan uusi peli, joka luo ratkaisun ja pelin sovelluslogiikassa. Käyttöliittymä saa pelin getNumberOnField(int row, int col)-metodin avulla luodessaan gridPane-ruudukkoa.
 
 Pelin hallinnoimisesta vastaavia tärkeimpiä metodeja ovat muunmuaassa...
-- setSelectedField()
+- setSelectedField(int id)
 - addToGame()
 - checkIfDone()
 
+Käyttöliittymä kutsuu setSelectedField(int id)-metodia, kun valitaan ruudukosta ruutu. 
 
 ## Toiminnallisuuksia
 
