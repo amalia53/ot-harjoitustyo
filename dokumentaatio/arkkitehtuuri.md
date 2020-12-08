@@ -24,20 +24,15 @@ Käyttöliittymän kautta sovelluslogiikkaa kutsumalla pelaaja voi aloittaa uude
 
 Sovelluslogiikka on toteutettu luokissa sudoku.domain.SudokuGame ja sudoku.domain.SudokuSolver. sudoku.domain.SudokuGame sisältää pelin luomisesta ja hallinnoimisesta vastaavan koodin. sudoku.domain.SudokuSolver tulee tulevaisuudessa toteuttamaan ratkottavan ja uniikin pelin luomista varten sudokun ratkojan. 
 
-Pelin luomisesta vastaavia tärkeimpiä metodeja ovat muunmuaassa...
-- createSolution()
-- removeNumberFromSolution()
-- createGame()
-- getNumberOnField(int row, int col)
+Pelin luomisesta vastaavista metodeista käyttöliittymä kutsuu...
+- createGame(), kun valitaan uusi peli, joka luo ratkaisun ja pelin sovelluslogiikassa
+- getNumberOnField(int row, int col), jonka avulla käyttöliittymä luo pelistä GridPane-ruudukon
 
-Käyttöliittymä kutsuu metodia createGame(), kun valitaan uusi peli, joka luo ratkaisun ja pelin sovelluslogiikassa. Käyttöliittymä saa pelin getNumberOnField(int row, int col)-metodin avulla luodessaan gridPane-ruudukkoa.
-
-Pelin hallinnoimisesta vastaavia tärkeimpiä metodeja ovat muunmuaassa...
-- setSelectedField(int id)
-- addToGame()
-- checkIfDone()
-
-Käyttöliittymä kutsuu setSelectedField(int id)-metodia, kun valitaan ruudukosta ruutu. 
+Pelin hallinnoimisesta vastaavista metodeista käyttöliittymä kutsuu...
+- setSelectedField(int id), kun valitaan ruudukosta ruutu
+- checkIfOriginalNumber(int row, int col), kun ruutuun yritetään lisätä tai siitä yritetään poistaa numeroa
+- addToGame() ja checkIfDone(), kun ruutuun lisätään numero. addToGame()-metodia kutsutaan myös poistaessa numero pelistä
+- eri gettereitä
 
 ## Toiminnallisuuksia
 
