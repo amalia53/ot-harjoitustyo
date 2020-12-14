@@ -1,4 +1,3 @@
-
 package sudoku.ui;
 
 import javafx.scene.text.Font;
@@ -10,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -47,6 +47,7 @@ public class SudokuUi extends Application {
     private Button winMenu;
     
     private Button selectedButton;
+    private boolean notesOn; 
     
     /**
      * Asettaa valikkonäkymän ikkunaan
@@ -95,6 +96,7 @@ public class SudokuUi extends Application {
      */ 
     
     public void createNewGame(Stage window) {
+        notesOn = false;
         BorderPane gamePane = new BorderPane();
         GridPane sudokuGrid = new GridPane();
         //sudokuGrid.setPadding(new Insets(10));
@@ -107,6 +109,7 @@ public class SudokuUi extends Application {
         createNumberButtons(window, sudokuGrid, numbersBox);
         numbersBox.setSpacing(40);
         VBox gameOptionsBox = new VBox();
+        ToggleButton noteButton = new ToggleButton("Muistiinpanot");
         Button eraseButton = new Button("Poista");
         eraseButton.setScaleX(1.4);
         eraseButton.setScaleY(1.4);
@@ -121,7 +124,7 @@ public class SudokuUi extends Application {
         VBox box = new VBox();
         gameBox.getChildren().addAll(sudokuGrid, numbersBox);
         gameBox.setPadding(new Insets(60, 0, 0, 0));
-        box.getChildren().addAll(gameBox, eraseButton);
+        box.getChildren().addAll(gameBox, noteButton, eraseButton);
         gameBox.setAlignment(Pos.BOTTOM_CENTER);
         gameBox.setSpacing(180);
         gamePane.setCenter(box);
@@ -335,24 +338,28 @@ public class SudokuUi extends Application {
     
     public void selectField(GridPane sudokuGrid, Button button) {
         int id = Integer.valueOf(button.getId());
-        button.setOnAction((event)-> {
-            if (selectedButton != null) {
-                int previousRow = game.getSelectedRow();
-                int previousCol = game.getSelectedColumn();
-                int previousId = game.getSelectedField();
-                int previousNumber = game.getNumberOnField(previousCol, previousRow);
-                selectedButton.setStyle("-fx--background-color: white; -fx-border-color: black");
-                sudokuGrid.getChildren().remove(getNodeByRowColumn(sudokuGrid, previousRow, previousCol));
-                if (previousNumber != 0) {
-                    createButton(sudokuGrid, previousId, previousCol, previousRow, previousNumber);
-                } else {
-                    createEmptyButton(sudokuGrid, previousId, previousCol, previousRow);
+        int column = (id - 1) % 9;
+        int row = (id - column) / 9;
+        if (game.checkIfOriginalNumber(row, column) == false) {
+            button.setOnAction((event)-> {
+                if (selectedButton != null) {
+                    int previousRow = game.getSelectedRow();
+                    int previousCol = game.getSelectedColumn();
+                    int previousId = game.getSelectedField();
+                    int previousNumber = game.getNumberOnField(previousCol, previousRow);
+                    selectedButton.setStyle("-fx--background-color: white; -fx-border-color: black");
+                    sudokuGrid.getChildren().remove(getNodeByRowColumn(sudokuGrid, previousRow, previousCol));
+                    if (previousNumber != 0) {
+                        createButton(sudokuGrid, previousId, previousCol, previousRow, previousNumber);
+                    } else {
+                        createEmptyButton(sudokuGrid, previousId, previousCol, previousRow);
+                    }
                 }
-            }
-            button.setStyle("-fx--background-color: gray; -fx-border-color: blue");
-            selectedButton = button;
-            game.setSelectedField(id);
-        });
+                button.setStyle("-fx--background-color: gray; -fx-border-color: blue");
+                selectedButton = button;
+                game.setSelectedField(id);
+            });
+        }
     }
     
     /**
@@ -398,6 +405,16 @@ public class SudokuUi extends Application {
                 sudokuGrid.getChildren().remove(getNodeByRowColumn(sudokuGrid,row, column));
                 game.addToGame(row, column, 0);
                 createEmptyButton(sudokuGrid, id, column, row);
+            }
+        });
+    }
+    
+    public void pushNotesButton(ToggleButton button) {
+        button.setOnAction(event -> {
+            if (notesOn) {
+                notesOn = false;
+            } else {
+                notesOn = true;
             }
         });
     }

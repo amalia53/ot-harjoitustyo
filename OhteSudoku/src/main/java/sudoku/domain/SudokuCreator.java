@@ -1,4 +1,8 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package sudoku.domain;
 
 import java.util.ArrayList;
@@ -6,201 +10,21 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-
-public class SudokuGame {
+/**
+ *
+ * @author amalia
+ */
+public class SudokuCreator {
     
-    private int selectedField;
-    private int selectedRow;
-    private int selectedColumn;
-   
     private int[][] solution;
-    private int[][] game;
-    private int[][] start;
     
-    public SudokuGame() {
+    public SudokuCreator() {
         this.solution = new int[9][9];
-        this.start = new int[9][9];
-        this.game = new int[9][9];
-    }
-    
-    /**
-     * Luo ratkaisusta pelin poistamalla ratkaisusta numeroita. 
-     * Tallettaa syntyvän pelin oliomuuttujiin start ja game
-     */
-    
-    public void createGame() {
-        while (createSolution() == null) {
-            this.createSolution();
-        }
-        start = copyTable(solution, start);
-        for (int i = 0; i < 40; i++) {
-            removeNumberFromSolution();
-        }
-        game = copyTable(start, game);
-    }
-    
-
-    
-    /**
-     * Kertoo tämän hetken pelitilanteen
-     * @return game-muuttuja, jossa tämän hetken peli talukossa
-     */
-    
-    public int[][] getCurrentGame() {
-        return this.game;
-    }
-    
-    /**
-     * Lisää annetun numeron annetulle paikalle game-taulukkoon, kun pelaaja täyttää uuden numeron peliin
-     * @param col      kolumni, johon numero laitettiin
-     * @param row      rivi, johon numero laitettiin
-     * @param number   numero, joka ruutuun lisättiin
-     */
-    
-    public void addToGame(int col, int row, int number) {
-        game[col][row] = number;
-    }
-    
-    /**
-     * Asettaa valitun ruudun, rivin ja kolumnin oliomuuttujiin
-     * @param id   ruudun id eli järjestysnumero
-     */
-    
-    public void setSelectedField(int id) {
-        this.selectedField = id;
-        this.selectedColumn = (id - 1) % 9;
-        this.selectedRow = (id - selectedColumn) / 9;
-    }
-    
-    /**
-     * Kertoo valitun ruudun id:n eli järjestysnumeron
-     * @return valitun ruudun id
-     */
-    
-    public int getSelectedField() {
-        return this.selectedField; 
-    }
-    
-    /**
-     * Kertoo valitun ruudun rivin
-     * @return valitun ruudun rivi
-     */
-    
-    
-    public int getSelectedRow() {
-        return this.selectedRow; 
-    }
-    
-    /**
-     * Kertoo valitun ruudun kolumnin
-     * @return valitun ruudun kolumni
-     */
-    
-    public int getSelectedColumn() {
-        return this.selectedColumn; 
-    }
-    
-    /**
-     * Tarkistaa, onko kyseisen ruudun numero pelin vai pelaajan asettama
-     * @param col  valitun ruudun kolumni
-     * @param row  valitun ruudun rivi
-     * @return true, jos on pelin asettama; false, jos pelaajan asettama
-     * 
-     */
-    
-    public boolean checkIfOriginalNumber(int col, int row) {
-        return start[col][row] != 0;
-    }
-    
-    /**
-     * Kertoo oikean numeron eli ratkaisun kyseisessä ruudussa
-     * @param row     valittu rivi
-     * @param column  valittu kolumni
-     * @return ratkaisussa oleva numero kyseisessä ruudussa
-     */
-    
-    public int getNumberOnSolution(int row, int column) {
-        return solution[row][column];
-    }
-    
-    /**
-     * Tarkistaa, onko sudoku ratkaistu kokonaan ja oikein eli onko peli voitettu
-     * @return true, jos oikein ja valmis; false jos kesken tai väärin
-     */
-    
-    public boolean checkIfDone() {
-        int correct = 0;
-        for (int x = 0; x < 9; x++) {
-            for (int y = 0; y < 9; y++) {
-                if (game[x][y] == solution[x][y]) {
-                    correct++;
-                }
-            }
-        }
-        boolean done = false;
-        if (correct == 81) {
-            done = true;
-        }
-        return done;
-    }
-    
-    /**
-     * Kertoo, mikä numero on tämän hetkisessä pelissä kysytyssä ruudussa
-     * @param row   kysytyn ruudun rivi
-     * @param col   kysytyn ruudun kolumni
-     * @return valittuun ruutuun asetettu numero
-     */
-    
-    public int getNumberOnField(int row, int col) {
-        return this.game[col][row];
-    }
-    
-    /**
-     * Poistaa ratkaisusta sarunnaisen numeron, mikäli siinä on vielä numero
-     * Tulevaisuudessa tarkoitus, että tarkistaa sudokuratkojan avulla, onko ratkaisu vielä uniikki ja ratkottavissa poiston jälkeen
-     * Jos ei ratkaistavissa, palauttaa numeron ratkaisuun ja kokeilee toista satunnaista numeroa
-     */
-    
-    public void removeNumberFromSolution() {
-        int[][] tempGame = new int[9][9];
-        tempGame = copyTable(start, tempGame);
-        while (true) {
-            int row = random();
-            int col = random();
-            if (tempGame[col][row] != 0) {
-                if (isSolvable(tempGame)) {
-                    start[col][row] = 0;
-                    break;
-                }
-            }
-        }
-    }
- 
-    
-    public boolean isSolvable(int[][] tempGame) {
-        for (int row = 0; row < 9; row++) {
-            for (int col = 0; col < 9; col++) {
-                if (tempGame[col][row] == 0) {
-                    for (int number = 1; number <= 9; number++) {
-                        if (checkIfOk(row, col, number)) {
-                            tempGame[col][row] = number;
-                            if (isSolvable(tempGame)) {
-                                return true;
-                            } else {
-                                System.out.println("Ei voida ratkaista");
-                            }
-                        }
-                    }
-                    
-                    return false;
-                }
-            }
-        }
-        return true;
     }
     
     /**
      * Luo sudokupelin ratkaisun ja tallettaa sen solution-oliomuuttujaan
+     *
      * @return sudokupelin ratkaisun 9x9 taulukkona
      */
     
@@ -210,7 +34,7 @@ public class SudokuGame {
         for (int row = 0; row < 9; row++) {
             for (int i = 1; i <= 9; i++) {
                 numbers.add(i);
-            } 
+            }
             Collections.shuffle(numbers);
             for (int col = 0; col < 9; col++) {
                 int number = getPossibleNumber(row, col, numbers);
@@ -221,8 +45,56 @@ public class SudokuGame {
                     solution[col][row] = number;
                 }
             }
-        } 
-        return this.solution;
+        }
+        return solution;
+    }
+    
+    /**
+     * Poistaa satunnaisesta ruudusta numeron ja tarkistaa, onko peli vielä ratkaistavissa sen jälkeen. Jos ei, ei tehdä mitään
+     * @param start
+     * @return pelin, josta on poistettu numero, jos se oli mahdollista
+     */
+    
+    public int[][] removeNumberFromSolution(int[][] start) {
+        int[][] tempGame = new int[9][9];
+        tempGame = copyTable(start, tempGame);
+        while (true) {
+            int row = random();
+            int col = random();
+            if (tempGame[col][row] != 0) {
+                if (isSolvable(tempGame)) {
+                    tempGame[col][row] = 0;
+                    return tempGame;
+                }
+            }
+        }
+        
+    }
+    
+    /**
+     * Tarkistaa, onko peli ratkaistavissa
+     * @param tempGame    väliaikainen peli
+     * @return true, jos ratkaistavissa; false, jos ei
+     */
+    
+    public boolean isSolvable(int[][] tempGame) {
+        for (int row = 0; row < 9; row++) {
+            for (int col = 0; col < 9; col++) {
+                if (tempGame[col][row] == 0) {
+                    for (int number = 1; number <= 9; number++) {
+                        if (checkIfOk(row, col, number)) {
+                            tempGame[col][row] = number;
+                            if (isSolvable(tempGame)) {
+                                return true;
+                            }
+                        }
+                    }
+                    
+                    return false;
+                }
+            }
+        }
+        return true;
     }
     
     /**
@@ -237,7 +109,6 @@ public class SudokuGame {
         for (int i = 0; i < numbers.size(); i++) {
             int number = numbers.get(i);
             if (checkIfOk(row, col, number) == true) {
-                numbers.remove(i);
                 return number;
             }
         } 
@@ -391,4 +262,14 @@ public class SudokuGame {
         return randomNumber;
 
     }
+    
+    public void gameToString(int[][] game) {
+        for (int x = 0; x < 9; x++) {
+            for (int y = 0; y < 9; y++) {
+                System.out.println(game[y][x]);
+            }
+            System.out.println("");
+        } 
+    }
+    
 }
