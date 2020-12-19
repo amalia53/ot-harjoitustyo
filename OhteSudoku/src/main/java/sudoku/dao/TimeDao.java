@@ -14,22 +14,27 @@ import java.util.Scanner;
 
 public class TimeDao {
     
-    public List<Integer> times;
-    private Scanner scanner;
-    private String file;
+    private List<Integer> times;
+    private String fileName;
     
     public TimeDao() throws Exception {
         times = new ArrayList<>();
-        file = "sudokuDao";
-        scanner = new Scanner(file);
+        fileName = "sudokuDao.txt";
+        readTimes();
     }
     
-    //Nyt ei tallenna mitään
     
     public void saveTime(int timeInt) throws Exception {
-        String time = timeInt + "\n";
-        try (FileWriter writer = new FileWriter(new File(file))) {
-            writer.write(time);
+        times.add(timeInt);
+        String timelist = "";
+        for (int i = 1; i <= times.size(); i++) {
+            timelist += times.get(i);
+            if (i != times.size()) {
+                timelist += "\n";
+            }
+        }
+        try (FileWriter writer = new FileWriter(new File(fileName))) {
+            writer.write(timelist);
             writer.close();
         } catch (Exception ex) {
             System.out.println("Error: " + ex);
@@ -39,6 +44,7 @@ public class TimeDao {
     
     public void readTimes() throws Exception {
         try {
+            Scanner scanner = new Scanner(new File(fileName));
             while (scanner.hasNextLine()) {
                 times.add(Integer.valueOf(scanner.nextLine()));
             }
@@ -48,16 +54,18 @@ public class TimeDao {
     }
     
     public int getBestTime() throws Exception {
-        readTimes();
         Collections.sort(times);
         return times.get(0);
     }
     
-    public List<Integer> getTop(int amount) throws Exception {
-        readTimes();
+    public List<Integer> getTop(int topSize) throws Exception {
         Collections.sort(times);
         List<Integer> top = new ArrayList();
-        for (int i = 0; i < amount; i++) {
+        int max = topSize;
+        if (topSize > times.size()) {
+            max = times.size();
+        }
+        for (int i = 0; i < max; i++) {
             top.add(times.get(i));
         }
         Collections.sort(top);

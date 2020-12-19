@@ -17,45 +17,52 @@ import java.util.Random;
 public class SudokuCreator {
     
     private int[][] solution;
+    private int[][] game;
+    private int[][] start;
     
     public SudokuCreator() {
         this.solution = new int[9][9];
+        this.start = new int[9][9];
+        this.game = new int[9][9];
     }
     
     /**
-     * Luo sudokupelin ratkaisun ja tallettaa sen solution-oliomuuttujaan
-     *
-     * @return sudokupelin ratkaisun 9x9 taulukkona
+     * Luo ratkaisusta pelin poistamalla ratkaisusta numeroita. 
+     * Tallettaa syntyvän pelin oliomuuttujiin start ja game
      */
     
-    public int[][] createSolution() {
-        //Creates a possible solution
-        List<Integer> numbers = new ArrayList<>();
-        for (int row = 0; row < 9; row++) {
-            for (int i = 1; i <= 9; i++) {
-                numbers.add(i);
-            }
-            Collections.shuffle(numbers);
-            for (int col = 0; col < 9; col++) {
-                int number = getPossibleNumber(row, col, numbers);
-                if (number == -1) {
-                    solution = new int[9][9];
-                    return null;
-                } else {
-                    solution[col][row] = number;
-                }
-            }
+    public void createGame(int amount) {
+        while (createSolution() == null) {
+            this.createSolution();
         }
+        start = copyTable(solution, start);
+        for (int i = 0; i < amount; i++) {
+            removeNumberFromSolution();
+        }
+        game = copyTable(start, game);
+    }
+
+    public int[][] getSolution() {
         return solution;
     }
+
+    public int[][] getGame() {
+        return game;
+    }
+
+    public int[][] getStart() {
+        return start;
+    }
+    
+    
     
     /**
-     * Poistaa satunnaisesta ruudusta numeron ja tarkistaa, onko peli vielä ratkaistavissa sen jälkeen. Jos ei, ei tehdä mitään
-     * @param start
-     * @return pelin, josta on poistettu numero, jos se oli mahdollista
+     * Poistaa ratkaisusta sarunnaisen numeron, mikäli siinä on vielä numero
+     * Tulevaisuudessa tarkoitus, että tarkistaa sudokuratkojan avulla, onko ratkaisu vielä uniikki ja ratkottavissa poiston jälkeen
+     * Jos ei ratkaistavissa, palauttaa numeron ratkaisuun ja kokeilee toista satunnaista numeroa
      */
     
-    public int[][] removeNumberFromSolution(int[][] start) {
+    public void removeNumberFromSolution() {
         int[][] tempGame = new int[9][9];
         tempGame = copyTable(start, tempGame);
         while (true) {
@@ -63,19 +70,13 @@ public class SudokuCreator {
             int col = random();
             if (tempGame[col][row] != 0) {
                 if (isSolvable(tempGame)) {
-                    tempGame[col][row] = 0;
-                    return tempGame;
+                    start[col][row] = 0;
+                    break;
                 }
             }
         }
-        
     }
-    
-    /**
-     * Tarkistaa, onko peli ratkaistavissa
-     * @param tempGame    väliaikainen peli
-     * @return true, jos ratkaistavissa; false, jos ei
-     */
+ 
     
     public boolean isSolvable(int[][] tempGame) {
         for (int row = 0; row < 9; row++) {
@@ -86,6 +87,7 @@ public class SudokuCreator {
                             tempGame[col][row] = number;
                             if (isSolvable(tempGame)) {
                                 return true;
+                            } else {
                             }
                         }
                     }
@@ -95,6 +97,32 @@ public class SudokuCreator {
             }
         }
         return true;
+    }
+    
+    /**
+     * Luo sudokupelin ratkaisun ja tallettaa sen solution-oliomuuttujaan
+     * @return sudokupelin ratkaisun 9x9 taulukkona
+     */
+    
+    public int[][] createSolution() {
+        //Creates a possible solution
+        List<Integer> numbers = new ArrayList<>();
+        for (int row = 0; row < 9; row++) {
+            for (int i = 1; i <= 9; i++) {
+                numbers.add(i);
+            } 
+            Collections.shuffle(numbers);
+            for (int col = 0; col < 9; col++) {
+                int number = getPossibleNumber(row, col, numbers);
+                if (number == -1) {
+                    solution = new int[9][9];
+                    return null;
+                } else {
+                    solution[col][row] = number;
+                }
+            }
+        } 
+        return this.solution;
     }
     
     /**
@@ -109,6 +137,7 @@ public class SudokuCreator {
         for (int i = 0; i < numbers.size(); i++) {
             int number = numbers.get(i);
             if (checkIfOk(row, col, number) == true) {
+                numbers.remove(i);
                 return number;
             }
         } 
@@ -262,14 +291,4 @@ public class SudokuCreator {
         return randomNumber;
 
     }
-    
-    public void gameToString(int[][] game) {
-        for (int x = 0; x < 9; x++) {
-            for (int y = 0; y < 9; y++) {
-                System.out.println(game[y][x]);
-            }
-            System.out.println("");
-        } 
-    }
-    
 }

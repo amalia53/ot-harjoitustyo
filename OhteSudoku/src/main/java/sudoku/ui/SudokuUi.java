@@ -1,6 +1,7 @@
 package sudoku.ui;
 
 import static java.lang.System.nanoTime;
+import java.util.List;
 import javafx.scene.text.Font;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
@@ -25,15 +26,18 @@ public class SudokuUi extends Application {
 
     private TimeDao times;
     private SudokuGame game;
+    
     private Scene menuScene;
     private Scene gameScene;
     private Scene gameMenuScene;
+    private Scene topScene;
     private Scene winScene;
     
     // Menu
     private BorderPane menuPane;
     private Label menuLabel;
     private Button newGameButton;
+    private Button topButton;
     private VBox menuBox;
     
     //Gamemenu
@@ -43,6 +47,11 @@ public class SudokuUi extends Application {
     private Button resumeButton;
     private VBox gameMenuBox;
     
+    //Top
+    private BorderPane topPane;
+    private VBox topBox;
+    private Label topLabel;
+    private Button topMenuButton;
     
     //Win
     private BorderPane winPane;
@@ -89,18 +98,53 @@ public class SudokuUi extends Application {
         menuBox = new VBox();
         menuLabel = new Label("Valikko");
         menuLabel.setFont(Font.font("Arial", 40));
-        menuBox.getChildren().addAll(sudokuLabel, menuLabel);
-        menuBox.setSpacing(50);
+        menuBox.setSpacing(80);
         newGameButton = new Button("Uusi peli");
+        topButton = new Button("Ennätyslista");
+        menuBox.getChildren().addAll(sudokuLabel, menuLabel, newGameButton, topButton);
         menuBox.setAlignment(Pos.TOP_CENTER);
         menuBox.setPadding(new Insets (80, 0, 0, 0));
         menuBox.setAlignment(Pos.CENTER);
-        menuPane.setCenter(newGameButton);
         menuPane.setTop(menuBox);
         newGameButton.setScaleX(2);
         newGameButton.setScaleY(2);
+        topButton.setScaleX(2);
+        topButton.setScaleY(2);
+        pushTopButton(window);
         pushNewGameButton(window, newGameButton);
         menuScene = new Scene(menuPane, 800, 1000);
+    }
+    
+    /**
+     * Luo ennätyslistanäkymän
+     * @param window 
+     */
+    
+    public void createTopScene(Stage window) {
+        topPane = new BorderPane();
+        topLabel = new Label("Ennätyslista");
+        topLabel.setFont(Font.font("Arial", 50));
+        topBox = new VBox();
+        topBox.getChildren().add(topLabel);
+        try {
+            List<Integer> topList = times.getTop(5);
+            for (int i = 0; i < topList.size(); i++) {
+                if (topList.get(i) == null) {
+                    break;
+                }
+                String time = setTime(topList.get(i));
+                int rank = i + 1;
+                Label label = new Label(rank + ". " + time);
+                topBox.getChildren().add(label);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        topMenuButton = new Button("Valikko");
+        topBox.getChildren().add(topMenuButton);
+        pushButton(topMenuButton, window, menuScene);
+        topPane.setCenter(topBox);
+        topScene = new Scene(topPane, 800, 1000);
     }
 
     /**
@@ -161,8 +205,13 @@ public class SudokuUi extends Application {
         gameMenuPane = new BorderPane();
         gameMenuBox = new VBox();
         gameMenuLabel = new Label("Valikko");
+        gameMenuLabel.setFont(Font.font("Arial", 40));
         gameMenuNewGameButton = new Button("Uusi peli");
         resumeButton = new Button("Jatka peliä");
+        gameMenuNewGameButton.setScaleX(2);
+        gameMenuNewGameButton.setScaleY(2);
+        resumeButton.setScaleX(2);
+        resumeButton.setScaleY(2);
         gameMenuBox.getChildren().add(gameMenuLabel);
         gameMenuBox.getChildren().add(resumeButton);
         gameMenuBox.getChildren().add(gameMenuNewGameButton);
@@ -241,48 +290,34 @@ public class SudokuUi extends Application {
         }
     }
     
-    /**
-     * Luodaan 3x3-ruuduikoita rajaavat reunat
-     * @param button
-     * @param y
-     * @param x 
-     */
+/**
+ * Luodaan 3x3-ruudukoita rajaavat reunat halutulle napille
+ * @param y
+ * @param x
+ * @return Merkkijono, joka määrittelee reunat
+ */
     
     public String setBorder(int y, int x) {
         if (x == 3 || x == 6) {
             if (y == 3 || y == 6) {
-                //x = 3 ja y = 3: TOP LEFT
                 return "-fx-background-insets: 0, 2.5 1 1 2.5";
-                //button.setStyle("-fx-font-weight: bold; -fx-background-color: black, white; -fx-background-radius: 0; -fx-background-insets: 0, 2.5 1 1 2.5;");
             } else if (y == 2 || y == 5) {
-                //x = 3 ja y = 2: TOP RIGHT
                 return "-fx-background-insets: 0, 2.5 2.5 1 1";
-                //button.setStyle("-fx-font-weight: bold; -fx-background-color: black, white; -fx-background-radius: 0; -fx-background-insets: 0, 2.5 2.5 1 1;");
             } else {
-                // x = 3: TOP
                 return "-fx-background-insets: 0, 2.5 1 1 1";
-                //button.setStyle("-fx-font-weight: bold; -fx-background-color: black, white; -fx-background-radius: 0; -fx-background-insets: 0, 2.5 1 1 1;");
             }
         } else if (x == 2 || x == 5) {
             if (y == 3 || y == 6) {
-                // x = 2 ja y = 3: BOTTOM LEFT
                 return "-fx-background-insets: 0, 1 1 2.5 2.5";
-                //button.setStyle("-fx-font-weight: bold; -fx-background-color: black, white; -fx-background-radius: 0; -fx-background-insets: 0, 1 1 2.5 2.5;");
             } else if (y == 2 || y == 5) {
-                // x = 2 ja y = 2 BOTTOM RIGHT
                 return "-fx-background-insets: 0, 1 2.5 2.5 1";
-                //button.setStyle("-fx-font-weight: bold; -fx-background-color: black, white; -fx-background-radius: 0; -fx-background-insets: 0, 1 2.5 2.5 1;");
             } else {
-                // x = 2: BOTTOM
                 return "-fx-background-insets: 0, 1 1 2.5 1";
-                //button.setStyle("-fx-font-weight: bold; -fx-background-color: black, white; -fx-background-radius: 0; -fx-background-insets: 0, 1 1 2.5 1;");
             }
         } else if (y == 2 || y == 5) {
             return "-fx-background-insets: 0, 1 2.5 1 1";
-            //button.setStyle("-fx-font-weight: bold; -fx-background-color: black, white; -fx-background-radius: 0; -fx-background-insets: 0, 1 2.5 1 1;");
         } else if (y == 3 || y == 6) {
             return "-fx-background-insets: 0, 1 1 1 2.5";
-            //button.setStyle("-fx-font-weight: bold; -fx-background-color: black, white; -fx-background-radius: 0; -fx-background-insets: 0, 1 1 1 2.5;");
         } else {
             return "-fx-background-insets: 0, 1 1 1 1";
         }
@@ -359,8 +394,7 @@ public class SudokuUi extends Application {
      * @param sudokuGrid
      * @param id        ruudun järjestysnumero
      * @param column
-     * @param row
-     * @param number 
+     * @param row 
      */
     
     public void createNoteButton(GridPane sudokuGrid, int id, int column, int row) {
@@ -409,11 +443,12 @@ public class SudokuUi extends Application {
     }
     
     /**
-     * Luodaan toiminnallisuus pelin aikaisen valikko -napin painallukselle, jossa luodaan pelivalikkonäkymä ja vaihdetaan tähän nä
+     * Luodaan toiminnallisuus pelin aikaisen valikko -napin painallukselle, jossa luodaan pelivalikkonäkymä ja vaihdetaan tähän näkymään
      * @param gameMenuButton    luodun pelin pelivalikkonappula
      * @param window 
      */
     
+
     public void pushGameMenuButton(Button gameMenuButton, Stage window) {
         gameMenuButton.setOnAction((event) -> {
             createGameMenu(window);
@@ -422,7 +457,7 @@ public class SudokuUi extends Application {
     }
     
     /**
-     * Luodaan toiminnallisuus, kun uusi peli -painiketta painetaan, jossa luodaan uusi peli ja asetetaan uusi pelinäkymä
+     * Luodaan toiminnallisuus, kun uusi peli -painiketta painetaan, jossa luodaan uusi peli ja pelinäkymä ja asetetaan se näkymäksi
      * @param window
      * @param button 
      */
@@ -432,6 +467,18 @@ public class SudokuUi extends Application {
             this.game.createGame();
             createNewGame(window);
             window.setScene(gameScene);
+        });
+    }
+    
+    /**
+     * Luo toiminnallisuuden, jossa kun Ennätyslista-nappia painetaan, luodaan ennätyslistanäkymä ja asetetaan se näkymäksi
+     * @param window 
+     */
+    
+    public void pushTopButton(Stage window) {
+        topButton.setOnAction(e -> {
+            createTopScene(window);
+            window.setScene(topScene);
         });
     }
     
@@ -541,11 +588,7 @@ public class SudokuUi extends Application {
     
     public void pushNoteButton(ToggleButton button) {
         button.setOnAction(e -> {
-            if (button.isSelected()) {
-                notesOn = true;
-            } else {
-                notesOn = false;
-            }
+            notesOn = button.isSelected();
         });
     }
     
