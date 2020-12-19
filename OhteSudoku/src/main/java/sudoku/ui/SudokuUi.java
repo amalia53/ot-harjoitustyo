@@ -1,5 +1,6 @@
 package sudoku.ui;
 
+import static java.lang.System.nanoTime;
 import javafx.scene.text.Font;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
@@ -13,13 +14,17 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
+import sudoku.dao.TimeDao;
+import sudoku.domain.SudokuGame;
 
 public class SudokuUi extends Application {
-    
-    sudoku.domain.SudokuGame game = new sudoku.domain.SudokuGame();
-    
+
+    private TimeDao times;
+    private SudokuGame game;
     private Scene menuScene;
     private Scene gameScene;
     private Scene gameMenuScene;
@@ -48,6 +53,9 @@ public class SudokuUi extends Application {
     
     private Button selectedButton;
     private boolean notesOn; 
+    private long startTime;
+    private long endTime;
+    private int duration;
     
     /**
      * Asettaa valikkonäkymän ikkunaan
@@ -55,8 +63,13 @@ public class SudokuUi extends Application {
      * @throws Exception 
      */
     
+    public void init() throws Exception {
+    }
+    
     @Override
     public void start(Stage window) throws Exception {
+        times = new sudoku.dao.TimeDao();
+        game = new sudoku.domain.SudokuGame();
         createMenuScene(window); 
         window.setScene(menuScene);
         window.show();
@@ -87,7 +100,7 @@ public class SudokuUi extends Application {
         newGameButton.setScaleX(2);
         newGameButton.setScaleY(2);
         pushNewGameButton(window, newGameButton);
-        menuScene = new Scene(menuPane, 800, 900);
+        menuScene = new Scene(menuPane, 800, 1000);
     }
 
     /**
@@ -96,15 +109,14 @@ public class SudokuUi extends Application {
      */ 
     
     public void createNewGame(Stage window) {
-        notesOn = false;
         BorderPane gamePane = new BorderPane();
         GridPane sudokuGrid = new GridPane();
-        //sudokuGrid.setPadding(new Insets(10));
-        sudokuGrid.setHgap(3);
-        sudokuGrid.setVgap(3);
+        GridPane textGrid = new GridPane();
         createGrid(sudokuGrid);     
         sudokuGrid.setScaleX(1.8);
         sudokuGrid.setScaleY(1.8);
+        textGrid.setScaleX(1.8);
+        textGrid.setScaleY(1.8);
         HBox numbersBox = new HBox();
         createNumberButtons(window, sudokuGrid, numbersBox);
         numbersBox.setSpacing(40);
@@ -118,6 +130,7 @@ public class SudokuUi extends Application {
         gameMenuButton.setScaleY(1.8);
         gameOptionsBox.getChildren().addAll(gameMenuButton);
         gameOptionsBox.setPadding(new Insets(0, 0, 50, 0));
+        textGrid.setAlignment(Pos.CENTER);     
         sudokuGrid.setAlignment(Pos.CENTER);     
         numbersBox.setAlignment(Pos.CENTER);
         VBox gameBox = new VBox();
@@ -134,7 +147,9 @@ public class SudokuUi extends Application {
         gameOptionsBox.setAlignment(Pos.CENTER);
         pushEraseButton(eraseButton, sudokuGrid);
         pushGameMenuButton(gameMenuButton, window);
-        gameScene = new Scene(gamePane, 800, 900);
+        pushNoteButton(noteButton);
+        gameScene = new Scene(gamePane, 800, 1000);
+        startTime = nanoTime();
     }
        
     /**
@@ -156,7 +171,7 @@ public class SudokuUi extends Application {
         gameMenuPane.setCenter(gameMenuBox);
         pushButton(resumeButton, window, gameScene);
         pushNewGameButton(window, gameMenuNewGameButton);
-        gameMenuScene = new Scene(gameMenuPane, 800, 900);
+        gameMenuScene = new Scene(gameMenuPane, 800, 1000);
     }
 
     /**
@@ -164,25 +179,36 @@ public class SudokuUi extends Application {
      * @param window
      * @param sudokuGrid 
      */
-        
+    
     public void createWinScene(Stage window, GridPane sudokuGrid) {
         winPane = new BorderPane();
         winBox = new VBox();
         winLabel = new Label("Voitit pelin! Onneksi olkoon!");
+        String time = setTime(duration);
+        int bestDuration = 0;
+        try {
+            bestDuration = times.getBestTime();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        String bestTime = setTime(bestDuration);
+        Label timeLabel = new Label("Aikasi: " + time + "\n Paras aika: " + bestTime);
         winNewGame = new Button("Uusi peli");
         winMenu = new Button("Valikko");
         winMenu.setScaleX(1.8);
         winMenu.setScaleY(1.8);
         winNewGame.setScaleX(1.8);
         winNewGame.setScaleY(1.8);
-        HBox winLabelBox = new HBox();
-        winLabelBox.getChildren().add(winLabel);
+        VBox winLabelBox = new VBox();
+        winLabelBox.setSpacing(40);
+        winLabelBox.getChildren().addAll(winLabel, timeLabel);
         winBox.getChildren().add(winNewGame);
         winBox.getChildren().add(winMenu);
         winPane.setTop(winLabelBox);
         winLabelBox.setAlignment(Pos.CENTER);
         winLabelBox.setPadding(new Insets(50, 50, 50, 50));
         winLabel.setFont(Font.font("Arial", 40));
+        timeLabel.setFont(Font.font("Arial", 30));
         winPane.setCenter(sudokuGrid);
         winPane.setBottom(winBox);
         winBox.setSpacing(50);
@@ -190,7 +216,7 @@ public class SudokuUi extends Application {
         winBox.setAlignment(Pos.CENTER);
         pushNewGameButton(window, winNewGame);
         pushButton(winMenu, window, menuScene);
-        winScene = new Scene(winPane, 800, 900);
+        winScene = new Scene(winPane, 800, 1000);
     }
     
     /**
@@ -203,15 +229,65 @@ public class SudokuUi extends Application {
             for (int y=0; y<9; y++) {
                 int number = game.getNumberOnField(x, y);
                 int id = (y)*9+x+1;
+                Button button = null;
                 if (number == 0) {
-                    createEmptyButton(sudokuGrid, id, x, y);
+                    button = createEmptyButton(sudokuGrid, id, x, y);
                 } else {
-                    Button button = createButton(sudokuGrid, id, x, y, number);
-                    button.setStyle("-fx-font-weight: bold; -fx-background-color: white; -fx-border-color: black");
+                    button = createButton(sudokuGrid, id, x, y, number);
                 }
+                String border = setBorder(x, y);
+                button.setStyle("-fx-font-weight: bold; -fx-background-color: black, white; -fx-background-radius: 0;" + border);
             }
         }
     }
+    
+    /**
+     * Luodaan 3x3-ruuduikoita rajaavat reunat
+     * @param button
+     * @param y
+     * @param x 
+     */
+    
+    public String setBorder(int y, int x) {
+        if (x == 3 || x == 6) {
+            if (y == 3 || y == 6) {
+                //x = 3 ja y = 3: TOP LEFT
+                return "-fx-background-insets: 0, 2.5 1 1 2.5";
+                //button.setStyle("-fx-font-weight: bold; -fx-background-color: black, white; -fx-background-radius: 0; -fx-background-insets: 0, 2.5 1 1 2.5;");
+            } else if (y == 2 || y == 5) {
+                //x = 3 ja y = 2: TOP RIGHT
+                return "-fx-background-insets: 0, 2.5 2.5 1 1";
+                //button.setStyle("-fx-font-weight: bold; -fx-background-color: black, white; -fx-background-radius: 0; -fx-background-insets: 0, 2.5 2.5 1 1;");
+            } else {
+                // x = 3: TOP
+                return "-fx-background-insets: 0, 2.5 1 1 1";
+                //button.setStyle("-fx-font-weight: bold; -fx-background-color: black, white; -fx-background-radius: 0; -fx-background-insets: 0, 2.5 1 1 1;");
+            }
+        } else if (x == 2 || x == 5) {
+            if (y == 3 || y == 6) {
+                // x = 2 ja y = 3: BOTTOM LEFT
+                return "-fx-background-insets: 0, 1 1 2.5 2.5";
+                //button.setStyle("-fx-font-weight: bold; -fx-background-color: black, white; -fx-background-radius: 0; -fx-background-insets: 0, 1 1 2.5 2.5;");
+            } else if (y == 2 || y == 5) {
+                // x = 2 ja y = 2 BOTTOM RIGHT
+                return "-fx-background-insets: 0, 1 2.5 2.5 1";
+                //button.setStyle("-fx-font-weight: bold; -fx-background-color: black, white; -fx-background-radius: 0; -fx-background-insets: 0, 1 2.5 2.5 1;");
+            } else {
+                // x = 2: BOTTOM
+                return "-fx-background-insets: 0, 1 1 2.5 1";
+                //button.setStyle("-fx-font-weight: bold; -fx-background-color: black, white; -fx-background-radius: 0; -fx-background-insets: 0, 1 1 2.5 1;");
+            }
+        } else if (y == 2 || y == 5) {
+            return "-fx-background-insets: 0, 1 2.5 1 1";
+            //button.setStyle("-fx-font-weight: bold; -fx-background-color: black, white; -fx-background-radius: 0; -fx-background-insets: 0, 1 2.5 1 1;");
+        } else if (y == 3 || y == 6) {
+            return "-fx-background-insets: 0, 1 1 1 2.5";
+            //button.setStyle("-fx-font-weight: bold; -fx-background-color: black, white; -fx-background-radius: 0; -fx-background-insets: 0, 1 1 1 2.5;");
+        } else {
+            return "-fx-background-insets: 0, 1 1 1 1";
+        }
+    }
+    
     
     //Buttons
     
@@ -247,12 +323,15 @@ public class SudokuUi extends Application {
     
     public Button createButton(GridPane sudokuGrid, int id, int column, int row, int number) {
         Button button = new Button("" + number);
-        button.setStyle("-fx-background-color: white; -fx-border-color: black");
+        String border = setBorder(column, row);
+        button.setStyle("-fx-background-color: black, white; -fx-background-radius: 0;" + border);
+        button.setPrefSize(30, 30);
+        button.setMinSize(30, 30);
+        button.setMaxSize(30, 30);
         button.setId("" + id);
         sudokuGrid.add(button, column, row);
         selectField(sudokuGrid, button);
         return button;
-        
     }
     
     /**
@@ -263,21 +342,46 @@ public class SudokuUi extends Application {
      * @param row 
      */
     
-    public void createEmptyButton(GridPane sudokuGrid, int id, int column, int row) {
-        Button newButton = new Button("  ");
-        newButton.setStyle("-fx-background-color: white; -fx-border-color: black");
-        newButton.setId("" + id);
-        sudokuGrid.add(newButton, column, row);
-        selectField(sudokuGrid, newButton);
-    }
-    
+    public Button createEmptyButton(GridPane sudokuGrid, int id, int column, int row) {
+        Button button = new Button("  ");
+        String border = setBorder(column, row);
+        button.setStyle("-fx-background-color: black, white; -fx-background-radius: 0;" + border);        button.setPrefSize(30, 30);
+        button.setMinSize(30, 30);
+        button.setMaxSize(30, 30);
+        button.setId("" + id);
+        sudokuGrid.add(button, column, row);
+        selectField(sudokuGrid, button);
+        return button;
+    }  
+        
     /**
+     * Luodaan valittuun ruutuun nappi, jossa pieni muistiinpanonumero
+     * @param sudokuGrid
+     * @param id        ruudun järjestysnumero
+     * @param column
+     * @param row
+     * @param number 
+     */
+    
+    public void createNoteButton(GridPane sudokuGrid, int id, int column, int row) {
+        String notes = game.getNotesOnField(id);
+        Button button = new Button(notes);
+        button.setPrefSize(30, 30);
+        button.setMinSize(30, 30);
+        button.setMaxSize(30, 30);
+        String border = setBorder(column, row);
+        button.setStyle("-fx-background-color: black, white; -fx-background-radius: 0; -fx-font-size: 5;" + border);
+        button.setId("" + id);
+        sudokuGrid.add(button, column, row);
+        selectField(sudokuGrid, button);
+    }
+
+     /**
      * Luo 9 nappia, joissa numerot 1-9
      * @param window
      * @param sudokuGrid   
      * @param numbersBox   asettelu, johon napit lisätään näkymässä
      */
-    
     
     public void createNumberButtons(Stage window, GridPane sudokuGrid, HBox numbersBox) {
         for (int x=1; x<=9; x++) {
@@ -349,13 +453,20 @@ public class SudokuUi extends Application {
                     int previousNumber = game.getNumberOnField(previousCol, previousRow);
                     selectedButton.setStyle("-fx--background-color: white; -fx-border-color: black");
                     sudokuGrid.getChildren().remove(getNodeByRowColumn(sudokuGrid, previousRow, previousCol));
-                    if (previousNumber != 0) {
-                        createButton(sudokuGrid, previousId, previousCol, previousRow, previousNumber);
-                    } else {
+                    if (previousNumber == 0) {
                         createEmptyButton(sudokuGrid, previousId, previousCol, previousRow);
+                    } else if (previousNumber > 9) {
+                        createNoteButton(sudokuGrid, previousId, previousCol, previousRow);
+                    } else {
+                        createButton(sudokuGrid, previousId, previousCol, previousRow, previousNumber);
+
                     }
                 }
-                button.setStyle("-fx--background-color: gray; -fx-border-color: blue");
+                String size = "";
+                if (game.getNumberOnField(column, row) == 10) {
+                    size = "-fx-font-size: 5";
+                }
+                button.setStyle("-fx--background-color: gray; -fx-border-color: blue;" + size);
                 selectedButton = button;
                 game.setSelectedField(id);
             });
@@ -379,11 +490,25 @@ public class SudokuUi extends Application {
             //check if number is set by game, if not add number
             if (game.checkIfOriginalNumber(row, column) == false) {
                 sudokuGrid.getChildren().remove(getNodeByRowColumn(sudokuGrid, row, column));
-                createButton(sudokuGrid, id, column, row, number);
-                game.addToGame(row, column, number);
+                if (notesOn) {
+                    game.addNote(id, number);
+                    game.addToGame(id, row, column, 10);
+                    createNoteButton(sudokuGrid, id, column, row);
+                } else {
+                    createButton(sudokuGrid, id, column, row, number);
+                    game.addToGame(id, row, column, number);
+                }
             }
             boolean win = game.checkIfDone();
             if (win == true) {
+                endTime = nanoTime();
+                long elapsedTime = (endTime - startTime) / 1000000000;
+                duration = (int) elapsedTime;
+                try {
+                    times.saveTime(duration);
+                } catch (Exception ex) {
+                    System.out.println("Error: " + ex);;
+                }
                 createWinScene(window, sudokuGrid);
                 window.setScene(winScene);
             }
@@ -403,19 +528,63 @@ public class SudokuUi extends Application {
             int column = game.getSelectedColumn();
             if (game.checkIfOriginalNumber(row, column) == false) {
                 sudokuGrid.getChildren().remove(getNodeByRowColumn(sudokuGrid,row, column));
-                game.addToGame(row, column, 0);
+                game.addToGame(id, row, column, 0);
                 createEmptyButton(sudokuGrid, id, column, row);
             }
         });
     }
     
-    public void pushNotesButton(ToggleButton button) {
-        button.setOnAction(event -> {
-            if (notesOn) {
-                notesOn = false;
-            } else {
+    /**
+     * Luodaan toiminnallisuus, jossa painaessa Muistiinpanot-painike pohjaan, notesOn-muuttuja on true
+     * @param button 
+     */
+    
+    public void pushNoteButton(ToggleButton button) {
+        button.setOnAction(e -> {
+            if (button.isSelected()) {
                 notesOn = true;
+            } else {
+                notesOn = false;
             }
         });
+    }
+    
+    /**
+     * Luo String-muuttujan, jossa aika tunteina, minuutteina ja sekunteina
+     * @return aika tunteina, minuutteina ja sekunteina
+     */
+    
+    public String setTime(int time) {
+        int hours = time / 3600;
+        int remainder = (int) time - hours * 3600;
+        int minutes = remainder / 60;
+        remainder = remainder - minutes * 60;
+        int seconds = remainder;
+        String hour = "00";
+        String minute = "00";
+        String second = "00";
+        if (seconds > 0 && seconds < 10) {
+            second = "0" + seconds;
+        }
+        if (seconds >= 10) {
+            second = "" + seconds;
+        }
+        if (minutes > 0 && minutes < 10) {
+            minute = "0" + minutes;
+        }
+        if (minutes >= 10) {
+            minute = "" + minutes;
+        }
+        if (hours > 0 && hours < 10) {
+            hour = "0" + hours;
+        }
+        if (hours >= 10) {
+            hour = "" + hours;
+        }
+        if (hours > 0) {
+            return hour + ":" + minute + ":" + second;
+        } else {
+            return minute + ":" + second;
+        }
     }
 }

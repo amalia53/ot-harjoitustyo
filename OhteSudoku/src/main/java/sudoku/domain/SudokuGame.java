@@ -3,6 +3,7 @@ package sudoku.domain;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
@@ -16,11 +17,13 @@ public class SudokuGame {
     private int[][] solution;
     private int[][] game;
     private int[][] start;
+    private HashMap<Integer, List<Integer>> notes;
     
     public SudokuGame() {
         this.solution = new int[9][9];
         this.start = new int[9][9];
         this.game = new int[9][9];
+        this.notes = new HashMap<>();
     }
     
     /**
@@ -57,8 +60,61 @@ public class SudokuGame {
      * @param number   numero, joka ruutuun lisättiin
      */
     
-    public void addToGame(int col, int row, int number) {
+    public void addToGame(int id, int col, int row, int number) {
         game[col][row] = number;
+        if (notes.containsKey(id) && number < 10) {
+            notes.remove(id);
+        }
+    }
+    
+    /**
+     * Lisää muistiinpanon notes-mappiin
+     * @param id        ruudun järjestysnumero
+     * @param number    lisättävä muistiinpano
+     */
+    
+    public void addNote(int id, int number) {
+        if (notes.containsKey(id)) {
+            if (!notes.get(id).contains(number)) {
+                notes.get(id).add(number);
+                Collections.sort(notes.get(id));
+            } else {
+                for (int i = 0; i < notes.get(id).size(); i++) {
+                    if (notes.get(id).get(i) == number) {
+                        notes.get(id).remove(i);
+                    }
+                }
+            }
+        } else {
+            List<Integer> notesOnField = new ArrayList<>();
+            notesOnField.add(number);
+            notes.put(id, notesOnField);
+        }
+        /*for (int i = 0; i < notes.get(id).size(); i++) {
+            System.out.println(notes.get(id).get(i));
+        }*/
+    }
+    
+    /**
+     * Palauttaa muistiinpanot kysytyssä ruudussa
+     * @param id    ruudun järjestysnumero
+     * @return muistiinpanot String-muuttujana
+     */
+    
+    public String getNotesOnField(int id) {
+        if (notes.containsKey(id)) {
+            String notesOnField = "";
+            List<Integer> noteList = notes.get(id);
+            for (int i = 0; i < noteList.size(); i++) {
+                notesOnField += noteList.get(i);
+                if (i == 2 || i == 5) {
+                    notesOnField += "\n";
+                }
+            }
+            return notesOnField;
+        } else {
+            return null;
+        }
     }
     
     /**
@@ -187,7 +243,6 @@ public class SudokuGame {
                             if (isSolvable(tempGame)) {
                                 return true;
                             } else {
-                                System.out.println("Ei voida ratkaista");
                             }
                         }
                     }
