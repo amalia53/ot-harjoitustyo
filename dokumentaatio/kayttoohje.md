@@ -1,5 +1,7 @@
 # Käyttöohje
 
+Lataa ensiksi tiedosto 
+
 ### Ohjelman käynnistäminen 
 
 Ohjelman voi käynnistää komennolla:
