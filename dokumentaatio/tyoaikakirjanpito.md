@@ -11,5 +11,9 @@
 |2.12. |5 h|Testejä, sudokun edistämistä. Sekvenssikaavio ja release|
 |7.12. |6 h|Ulkoasun korjausta, pelin voittamisen lisäys|
 |8.12. |6 h|Ulkoasun korjausta, dokumentointia ja javadoc|
-|Yht.| 52 h|
+|12.12.|5 h|3x3-ruudukkojen vahvistus, muistiinpanojen luominen|
+|14.12.|6 h|Muistiinpanojen korjausta, daon luomista|
+|17.12.|4 h|ennätysaikojen korjausta, javadocin päivitys|
+|19.12.||Toimivuuden tarkastusta ja korjauksia|
+|Yht.| 67 h|
 
