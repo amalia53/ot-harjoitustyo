@@ -45,6 +45,10 @@ Käyttöliittymä kutsuu metodea...
 - getBestTime(), joka palauttaa parhaan ajan
 - getTop(int), joka palauttaa halutun määrän parhaita aikoja listana
 
+Ajat tallennetaan tiedostoon aika sekunteina jokainen omalla rivillään.
+
 ## Toiminnallisuuksia
 
-![Sekvenssikaavio](OhteSudoku_addingNumbers.png)
+![Sekvenssikaavio](OhteSudoku_addingNumbers.png)yksi peliin käytetty
+
+
