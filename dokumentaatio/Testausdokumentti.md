@@ -6,4 +6,4 @@ Ohjelmalle on kirjoitettu JUnit-testit, jotka testaavat sovelluslogiikan ja pysy
 
 Testikattavuus ilman käyttöliittymää on yhteensä rivikattavuuden osalta 94% ja haarautuvuuskattavuudeltaan 90%.
 
-![](testikattavuus.png)
+![](tKattavuus.png)
