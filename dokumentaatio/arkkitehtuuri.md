@@ -53,15 +53,24 @@ Ajat tallennetaan tiedostoon aika sekunteina jokainen omalla rivillään.
 
 Peli aloitetaan painamalla käyttöliittymän alkuvalikossa "Uusi peli". Tällöin käyttöliittymässä luodaan pelinäkymä ja luodaan peli seuraavasti:
 
-![Sekvenssikaavio](startingNewGame.png)
+![Sekvenssikaavio](startingANewGame.png)
 
 SudokuCreator luo ensiksi oikean ratkaisun pelille (solution), jonka jälkeen se poistaa numeroita ratkaisusta, niin että peli on edelleen ratkaistavissa. Tällöin syntyy pelin alkutilanne (start) ja tämän hetkinen pelitilanne (game). Kaikki nämä palautetaan getterien avulla SudokuGamelle, joka tallentaa ne luokkamuuttujiinsa. Sitten SudokuGame palauttaa käyttöliittymälle alkutilanteen taulun (start) numerot, jotka lisätään peliruudukkoon pelinäkymään.
 
 ### Numeron lisääminen pelistä
 
-Kun pelaaja haluaa lisätä numeron ruutuun, valitsee hän ensin käyttöliittymässä haluamansa ruudun ja numeron:
+Kun pelaaja haluaa lisätä numeron ruutuun, valitsee hän ensin käyttöliittymässä haluamansa ruudun ja numeron, kun muistiinpanot eivät ole päällä:
 
 ![Sekvenssikaavio](OhteSudoku_addingNumbers.png)
 
+Ensiksi tarkistetaan, onko ruutu, jota yritetään valita alkutilanteessa pelin asettama ruutu. Mikäli on, ei sitä voi valita eikä ruutua muokata. Jos ruutu on pelaajan muokattavissa, asetetaan se valituksi ruuduksi SudokuGamen luokkamuuttujaan. Sitten pelaaja valitsee haluamansa numeropainikkeen, jota painaessa SudokuUi tarkistaa, onko muistiinpanopainike valittuna. Mikäli ei, asetetaan ruutuun valittu numero ja kutsutaan SudokuGamen addToGame()-metodia, joka lisää tämän hetkiseen pelitilanteeseen (game-muuttuja) kyseisen numeron. 
+
+Numeron poisto toimii muuten samoin, mutta pelitilanteeseen lisätään numero 0 ja ruutuun laitetaan tyhjää.
+
+### Pelin voittaminen
+
+Peli voitetaan, kun pelaaja on asettanut kaikkiin tyhjiin ruutuihin oikean numeron, jolloin käyttöliittymässä luodaan voittonäkymä
+
 ![Sekvenssikaavio](winningAGame.png)
 
+Jokaisen numeron lisäämisen yhteydessä tarkistetaan, onko ruudukko täytetty kokonaan ja oikein kutsumalla SudokuGamen metodia checkIfDone(). Mikäli palautetaan true, käyttöliittymä tallettaa peliin kuluneen ajan kutsumalla TimeDaon metodia saveTime(). Tämä tallettaa ajan tiedostoon ja luokkamuuttujaan. Sitten haetaan vielä paras aika TimeDaon metodilla getBestTime() ja molemmat ajat näytetään voittonäkymässä.
