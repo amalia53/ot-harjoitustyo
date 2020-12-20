@@ -16,7 +16,7 @@ Alkuvalikossa voi valita "Uusi peli", jolloin luodaan uusi peli ja siirrytään 
 
 ### Ennätysten tarkastelu
 
-Alkuvalikosta pääsee ennätyslistaan valitsemalla "Ennätyslista". Täältä näkee parhaat ajat, jossa peli on pelattu. Mikäli pelejä on pelattu vähintään 5 kertaa, sivulla nähdään maksimissaan viisi parasta aikaa.
+Alkuvalikosta pääsee ennätyslistaan valitsemalla "Ennätyslista". Täältä näkee parhaat ajat, jossa peli on pelattu. Mikäli pelejä on pelattu vähintään 5 kertaa, sivulla nähdään maksimissaan viisi parasta aikaa. Täällä voi myös tyhjentää kaikki tallennetut ajat valitsemalla "Poista kaikki ajat"
 
 ### Pelaaminen
 
