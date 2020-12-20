@@ -61,7 +61,7 @@ SudokuCreator luo ensiksi oikean ratkaisun pelille (solution), jonka jälkeen se
 
 Kun pelaaja haluaa lisätä numeron ruutuun, valitsee hän ensin käyttöliittymässä haluamansa ruudun ja numeron, kun muistiinpanot eivät ole päällä:
 
-![Sekvenssikaavio](OhteSudoku_addingNumbers.png)
+![Sekvenssikaavio](addNumberToGame.png)
 
 Ensiksi tarkistetaan, onko ruutu, jota yritetään valita alkutilanteessa pelin asettama ruutu. Mikäli on, ei sitä voi valita eikä ruutua muokata. Jos ruutu on pelaajan muokattavissa, asetetaan se valituksi ruuduksi SudokuGamen luokkamuuttujaan. Sitten pelaaja valitsee haluamansa numeropainikkeen, jota painaessa SudokuUi tarkistaa, onko muistiinpanopainike valittuna. Mikäli ei, asetetaan ruutuun valittu numero ja kutsutaan SudokuGamen addToGame()-metodia, joka lisää tämän hetkiseen pelitilanteeseen (game-muuttuja) kyseisen numeron. 
 
