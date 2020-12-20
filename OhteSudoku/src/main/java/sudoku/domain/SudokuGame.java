@@ -35,7 +35,7 @@ public class SudokuGame {
      */
     
     public void createGame() {
-        creator.createGame(1);
+        creator.createGame();
         this.solution = creator.getSolution();
         this.start = creator.getStart();
         this.game = creator.getGame();
@@ -45,11 +45,20 @@ public class SudokuGame {
     
     /**
      * Kertoo tämän hetken pelitilanteen
-     * @return game-muuttuja, jossa tämän hetken peli talukossa
+     * @return tämän hetken peli talukkona
      */
     
     public int[][] getCurrentGame() {
         return this.game;
+    }
+    
+    /**
+     * Kertoo tämän hetken muistiinpanot
+     * @return tämän hetken muistiinpanot hashmapina
+     */
+
+    public HashMap<Integer, List<Integer>> getNotes() {
+        return notes;
     }
     
     /**
@@ -74,13 +83,14 @@ public class SudokuGame {
     
     public void addNote(int id, int number) {
         if (notes.containsKey(id)) {
-            if (!notes.get(id).contains(number)) {
-                notes.get(id).add(number);
+            List<Integer> noteList = notes.get(id);
+            if (!noteList.contains(number)) {
+                noteList.add(number);
                 Collections.sort(notes.get(id));
             } else {
-                for (int i = 0; i < notes.get(id).size(); i++) {
-                    if (notes.get(id).get(i) == number) {
-                        notes.get(id).remove(i);
+                for (int i = 0; i < noteList.size(); i++) {
+                    if (noteList.get(i) == number) {
+                        noteList.remove(i);
                     }
                 }
             }
@@ -89,9 +99,6 @@ public class SudokuGame {
             notesOnField.add(number);
             notes.put(id, notesOnField);
         }
-        /*for (int i = 0; i < notes.get(id).size(); i++) {
-            System.out.println(notes.get(id).get(i));
-        }*/
     }
     
     /**

@@ -72,9 +72,6 @@ public class SudokuUi extends Application {
      * @throws Exception 
      */
     
-    public void init() throws Exception {
-    }
-    
     @Override
     public void start(Stage window) throws Exception {
         times = new sudoku.dao.TimeDao();
@@ -125,6 +122,9 @@ public class SudokuUi extends Application {
         topLabel = new Label("Ennätyslista");
         topLabel.setFont(Font.font("Arial", 50));
         topBox = new VBox();
+        topBox.setAlignment(Pos.TOP_CENTER);
+        topBox.setPadding(new Insets(50, 50, 50, 50));
+        topBox.setSpacing(50);
         topBox.getChildren().add(topLabel);
         try {
             List<Integer> topList = times.getTop(5);
@@ -136,13 +136,20 @@ public class SudokuUi extends Application {
                 int rank = i + 1;
                 Label label = new Label(rank + ". " + time);
                 topBox.getChildren().add(label);
+                label.setFont(Font.font("Arial", 30));
             }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
         topMenuButton = new Button("Valikko");
-        topBox.getChildren().add(topMenuButton);
+        topMenuButton.setScaleX(2);
+        topMenuButton.setScaleY(2);
+        VBox buttonBox = new VBox(); 
+        buttonBox.setAlignment(Pos.TOP_CENTER);
+        buttonBox.setPadding(new Insets(100, 100, 100, 100));
+        buttonBox.getChildren().add(topMenuButton);
         pushButton(topMenuButton, window, menuScene);
+        topPane.setBottom(buttonBox);
         topPane.setCenter(topBox);
         topScene = new Scene(topPane, 800, 1000);
     }

@@ -9,6 +9,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import sudoku.domain.*;
+import sudoku.dao.*;
 
 
 public class SudokuTest {
@@ -16,6 +17,10 @@ public class SudokuTest {
     SudokuGame game = new SudokuGame();
     SudokuCreator creator = new SudokuCreator();
     
+    @Before
+    public void setUp() throws Exception {
+        TimeDao times = new TimeDao();
+    }
     
     @Test
     public void newSudokuGameIsCreated() {
@@ -126,4 +131,102 @@ public class SudokuTest {
         }
         assertEquals(game.checkIfDone(), true);
     }
+    
+    @Test
+    public void addToGameAddsToGame() {
+        game.createGame();
+        int col = 0;
+        int row = 0;
+        for (int x = 0; x < 9; x++) {
+            for (int y = 0; y < 9; y++) {
+                if (game.getCurrentGame()[y][x] != 0) {
+                    col = y;
+                    row = x;
+                    break;
+                }
+            }
+        }
+        int id = (col)*9+row+1;
+        game.addToGame(id, col, row, 2);
+        assertEquals(game.getNumberOnField(row, col), 2);
+    }
+    
+    @Test
+    public void addToGameClearsNotes() {
+        game.createGame();
+        int col = 0;
+        int row = 0;
+        for (int x = 0; x < 9; x++) {
+            for (int y = 0; y < 9; y++) {
+                if (game.getCurrentGame()[y][x] != 0) {
+                    col = y;
+                    row = x;
+                    break;
+                }
+            }
+        }
+        int id = (col)*9+row+1;
+        game.addNote(id, 1);
+        game.addToGame(id, col, row, 2);
+        assertEquals(game.getNotes().containsKey(id), false);
+    }
+    
+    @Test
+    public void addNoteCreatesListAndAddsToIt() {
+        game.addNote(1, 1);
+        assertEquals(game.getNotes().get(1).size(), 1);
+    }
+    
+    @Test
+    public void addNoteRemovesNumberIfAlreadyOnList() {
+        game.addNote(1, 2);
+        game.addNote(1, 2);
+        assertEquals(game.getNotes().get(1).size(), 0);
+
+    }
+    
+    @Test
+    public void getNotesOnFieldReturnNotesWithLineBreaks() {
+        for (int i = 1; i <= 9; i++) {
+            game.addNote(1, i);
+        }
+        String notes = game.getNotesOnField(1);
+        assertEquals(notes, "123\n456\n789");
+    }
+    
+    @Test
+    public void checkIfOriginalNumberReturnsTrueWhenSetByGame() {
+        game.createGame();
+        int col = 0;
+        int row = 0;
+        for (int x = 0; x < 9; x++) {
+            for (int y = 0; y < 9; y++) {
+                if (game.getCurrentGame()[y][x] != 0) {
+                    col = y;
+                    row = x;
+                    break;
+                }
+            }
+        }
+        assertEquals(game.checkIfOriginalNumber(col, row), true);
+    }
+    
+    @Test
+    public void checkIfOriginalNumberReturnsFalseWhenNotSetByGame() {
+        game.createGame();
+        int col = 0;
+        int row = 0;
+        for (int x = 0; x < 9; x++) {
+            for (int y = 0; y < 9; y++) {
+                if (game.getCurrentGame()[y][x] == 0) {
+                    col = y;
+                    row = x;
+                    break;
+                }
+            }
+        }
+        assertEquals(game.checkIfOriginalNumber(col, row), false);
+    }
+    
+    
 }

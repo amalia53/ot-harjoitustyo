@@ -19,29 +19,15 @@ public class SudokuCreator {
     private int[][] solution;
     private int[][] game;
     private int[][] start;
+    private int[][] tempGame;
     
     public SudokuCreator() {
         this.solution = new int[9][9];
         this.start = new int[9][9];
         this.game = new int[9][9];
+        this.tempGame = new int[9][9];
     }
     
-    /**
-     * Luo ratkaisusta pelin poistamalla ratkaisusta numeroita. 
-     * Tallettaa syntyvän pelin oliomuuttujiin start ja game
-     */
-    
-    public void createGame(int amount) {
-        while (createSolution() == null) {
-            this.createSolution();
-        }
-        start = copyTable(solution, start);
-        for (int i = 0; i < amount; i++) {
-            removeNumberFromSolution();
-        }
-        game = copyTable(start, game);
-    }
-
     public int[][] getSolution() {
         return solution;
     }
@@ -54,6 +40,21 @@ public class SudokuCreator {
         return start;
     }
     
+    /**
+     * Luo ratkaisusta pelin poistamalla ratkaisusta numeroita. 
+     * Tallettaa syntyvän pelin oliomuuttujiin start ja game
+     */
+    
+    public void createGame() {
+        while (createSolution() == null) {
+            this.createSolution();
+        }
+        start = copyTable(solution, start);
+        for (int i = 0; i < 40; i++) {
+            removeNumberFromSolution();
+        }
+        game = copyTable(start, game);
+    }  
     
     
     /**
@@ -62,22 +63,19 @@ public class SudokuCreator {
      * Jos ei ratkaistavissa, palauttaa numeron ratkaisuun ja kokeilee toista satunnaista numeroa
      */
     
-    public void removeNumberFromSolution() {
+        public void removeNumberFromSolution() {
         int[][] tempGame = new int[9][9];
         tempGame = copyTable(start, tempGame);
-        while (true) {
-            int row = random();
-            int col = random();
-            if (tempGame[col][row] != 0) {
-                if (isSolvable(tempGame)) {
-                    start[col][row] = 0;
-                    break;
-                }
+        int row = random();
+        int col = random();
+        if (tempGame[col][row] != 0) {
+            tempGame[col][row] = 0;
+            if (isSolvable(tempGame)) {
+                start[col][row] = 0;
             }
         }
     }
  
-    
     public boolean isSolvable(int[][] tempGame) {
         for (int row = 0; row < 9; row++) {
             for (int col = 0; col < 9; col++) {
@@ -98,6 +96,7 @@ public class SudokuCreator {
         }
         return true;
     }
+
     
     /**
      * Luo sudokupelin ratkaisun ja tallettaa sen solution-oliomuuttujaan
@@ -143,6 +142,14 @@ public class SudokuCreator {
         } 
         return -1;
     }
+    
+    /**
+     * Tarkistaa, onko annetun ruudun rivillä, kolumnissa tai 3x3-ruudussa annettua numeroa
+     * @param row     annetun ruudun rivi
+     * @param col     annetun ruudun kolumni
+     * @param number  tarkistettava numero
+     * @return true, jos ei löydy numeroa; false, jos numero löytyy
+     */
     
     public boolean checkIfOk(int row, int col, int number) {
         boolean rowIsOk = checkRow(row, col, number);
@@ -290,5 +297,15 @@ public class SudokuCreator {
         int randomNumber = random.nextInt(9);
         return randomNumber;
 
+    }
+    
+    public void print(int[][] board) {
+        for (int x = 0; x < 9; x++) {
+            for (int y = 0; y < 9; y++) {
+                System.out.print(board[y][x]);
+            }
+            System.out.println("");
+        }
+        System.out.println("");
     }
 }

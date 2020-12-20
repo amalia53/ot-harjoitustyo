@@ -17,19 +17,30 @@ public class TimeDao {
     private List<Integer> times;
     private String fileName;
     
+    /**
+     * Luodaan tyhjä lista ajoille, asetetaan tiedostonimi ja luetaan tiedoston sisälöt listalle
+     * @throws Exception 
+     */
+    
     public TimeDao() throws Exception {
         times = new ArrayList<>();
-        fileName = "sudokuDao.txt";
+        fileName = "sudokuDao";
         readTimes();
     }
+    
+    /**
+     * Tallennetaan annettu aika listalle ja tiedostoon
+     * @param timeInt
+     * @throws Exception 
+     */
     
     
     public void saveTime(int timeInt) throws Exception {
         times.add(timeInt);
         String timelist = "";
-        for (int i = 1; i <= times.size(); i++) {
+        for (int i = 0; i < times.size(); i++) {
             timelist += times.get(i);
-            if (i != times.size()) {
+            if (i != times.size() - 1) {
                 timelist += "\n";
             }
         }
@@ -42,6 +53,11 @@ public class TimeDao {
         
     }
     
+    /**
+     * Luetaan tiedoston rivit listalle
+     * @throws Exception 
+     */
+    
     public void readTimes() throws Exception {
         try {
             Scanner scanner = new Scanner(new File(fileName));
@@ -53,10 +69,23 @@ public class TimeDao {
         }
     }
     
+    /**
+     * Haetaan listalta paras aika ja palautetaan se
+     * @return paras aika
+     * @throws Exception 
+     */
+    
     public int getBestTime() throws Exception {
         Collections.sort(times);
         return times.get(0);
     }
+    
+    /**
+     * Haetaan listalta annettu määrä parhaita aikoja ja luodaan niistä uusi lista
+     * @param topSize
+     * @return listan parhaista ajoista
+     * @throws Exception 
+     */
     
     public List<Integer> getTop(int topSize) throws Exception {
         Collections.sort(times);
