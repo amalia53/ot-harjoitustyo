@@ -4,3 +4,4 @@ Ohjelmalle on kirjoitettu JUnit-testit, jotka testaavat sovelluslogiikan ja pysy
 
 ### Testikattavuus
 
+![](testikattavuus.png)
