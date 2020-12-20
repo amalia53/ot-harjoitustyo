@@ -77,3 +77,9 @@ Peli voitetaan, kun pelaaja on asettanut kaikkiin tyhjiin ruutuihin oikean numer
 ![Sekvenssikaavio](winningAGame.png)
 
 Jokaisen numeron lisäämisen yhteydessä tarkistetaan, onko ruudukko täytetty kokonaan ja oikein kutsumalla SudokuGamen metodia checkIfDone(). Mikäli palautetaan true, käyttöliittymä tallettaa peliin kuluneen ajan kutsumalla TimeDaon metodia saveTime(). Tämä tallettaa ajan tiedostoon ja luokkamuuttujaan. Sitten haetaan vielä paras aika TimeDaon metodilla getBestTime() ja molemmat ajat näytetään voittonäkymässä.
+
+## Ohjelmaan jääneet heikkoudet
+
+Ensimmäistä kertaa avatessa ohjelma heittää virheen puuttuvasta tiedostosta, jota yritetään lukea. Tämä korjaantuu, kun yhden pelin on voittanut ja tiedosto luodaan eikä se estä ohjelman käyttämistä.
+
+Pelistä ei tarkisteta, onko sille vain yksi ratkaisu, joten osan peleistä voi ratkaista sääntöjen mukaan oikein, mutta peliä ei voiteta.
