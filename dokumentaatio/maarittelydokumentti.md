@@ -23,7 +23,7 @@ Kun peliruudukko on täytetty onnistuneesti, siirrytään voittonäkymään, jos
 
 #### Ennätyslista
 - Ennätyslista, jossa max 5 parasta aikaa (jos pelattuna)
-- Painike: Tyhjennä kaikki ajat
+- Painike: Poista kaikki ajat
 - Painike: Valikko
 
 #### Pelinäkymässä
