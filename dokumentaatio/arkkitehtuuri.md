@@ -40,10 +40,11 @@ Käyttöliittymä kutsuu SudokuGamen metodeja...
 
 Pysyväistallennuksesta vastaa sudoku.dao.TimeDao, joka tallettaa tiedostoon "sudokuTimes" pelin pelaamiseen käytettyjä aikoja. 
 
-Käyttöliittymä kutsuu metodea...
+Käyttöliittymä kutsuu metodeja...
 - saveTime(), joka tallettaa ajan tiedostoon
 - getBestTime(), joka palauttaa parhaan ajan
 - getTop(int), joka palauttaa halutun määrän parhaita aikoja listana
+- clearTimes(), jolla voi poistaa kaikki tiedostoon ja listaan tallennetut ajat
 
 Ajat tallennetaan tiedostoon aika sekunteina jokainen omalla rivillään.
 
