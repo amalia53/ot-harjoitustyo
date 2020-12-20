@@ -55,7 +55,7 @@ Peli aloitetaan painamalla käyttöliittymän alkuvalikossa "Uusi peli". Tällö
 
 ![Sekvenssikaavio](startingNewGame.png)
 
-SudokuCreator luo ensiksi oikean ratkaisun pelille (solution), jonka jälkeen se poistaa numeroita ratkaisusta, niin että peli on edelleen ratkaistavissa. Tällöin syntyy pelin alkutilanne (start) ja tämän hetkinen pelitilanne (game). Kaikki nämä palautetaan getterien avulla SudokuGamelle, joka tallentaa ne luokkamuuttujiinsa. Sitten SudokuGame palauttaa käyttöliittymälle start-taulun numerot, jotka lisätään peliruudukkoon pelinäkymään.
+SudokuCreator luo ensiksi oikean ratkaisun pelille (solution), jonka jälkeen se poistaa numeroita ratkaisusta, niin että peli on edelleen ratkaistavissa. Tällöin syntyy pelin alkutilanne (start) ja tämän hetkinen pelitilanne (game). Kaikki nämä palautetaan getterien avulla SudokuGamelle, joka tallentaa ne luokkamuuttujiinsa. Sitten SudokuGame palauttaa käyttöliittymälle alkutilanteen taulun (start) numerot, jotka lisätään peliruudukkoon pelinäkymään.
 
 ![Sekvenssikaavio](OhteSudoku_addingNumbers.png)
 
