@@ -12,7 +12,7 @@ Ohjelman voi käynnistää komennolla:
 
 Alkuvalikossa voi valita "Uusi peli", jolloin luodaan uusi peli ja siirrytään pelinäkymään.
 
-<img src="koAlkuValikko.png" alt="drawing" width="200"/>
+<img src="koAlkuValikko.png" alt="drawing" width="300"/>
 
 ### Ennätysten tarkastelu
 
@@ -26,8 +26,8 @@ Numero lisätään valitsemalla haluttu ruutu ja klikkaamalla sen jälkeen halut
 Muistiinpano voidaan lisätä painamalla ensin muistiinpanopainike pohjaan. Sitten valitaan haluttu ruutu ja numero edellä mainitulla tavalla. Kun taas halutaan vaihtaa pois muistiinpanotilasta, ja lisätä oikea numero, painetaan muistiinpanopainike takaisin ylös. Muistiinpanonumeroita voi poistaa numero kerrallaan valitsemalla ensin ruudun ja sitten ruudussa jo olevan muistiinpanonumeron.
 Numeron tai muistiinpanot voi myös poistaa ruudusta valitsemalla ensiksi halutun ruudun ja painamalla sitten numerovalikon alla olevaa "Poista" -painiketta. Tämä tyhjentää kaikki ruudussa olevat muistiinpanot tai numeron, ja jättää ruudun tyhjäksi.
 
-<img src="koPeli.png" alt="drawing" width="200"/>
-<img src="koPelaaminen.png" alt="drawing" width="200"/>
+<img src="koPeli.png" alt="drawing" width="300"/>
+<img src="koPelaaminen.png" alt="drawing" width="300"/>
 
 ### Pelivalikko
 
@@ -39,4 +39,4 @@ Kun pelaaja on lisännyt kaikkiin ruutuihin oikean numeron aukeaa voittonäkymä
 Näkymässä näkee myös peliin kulutetun ajan ja parhaan ajan, jossa sudokuja on suoritettu aikaisemmin.
 Peliruudukon alapuolelta voi aloittaa suoraan uuden pelin valitsemalla "Uusi peli" tai siirtyä alkuvalikkoon painamalla "Valikko".
 
-<img src="koVoitto.png" alt="drawing" width="200"/>
+<img src="koVoitto.png" alt="drawing" width="300"/>
