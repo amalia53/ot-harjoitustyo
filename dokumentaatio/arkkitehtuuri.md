@@ -49,7 +49,13 @@ Ajat tallennetaan tiedostoon aika sekunteina jokainen omalla rivillään.
 
 ## Toiminnallisuuksia
 
+### Pelin aloitus
+
+Peli aloitetaan painamalla käyttöliittymän alkuvalikossa "Uusi peli". Tällöin käyttöliittymässä luodaan pelinäkymä ja luodaan peli seuraavasti:
+
 ![Sekvenssikaavio](startingNewGame.png)
+
+SudokuCreator luo ensiksi oikean ratkaisun pelille (solution), jonka jälkeen se poistaa numeroita ratkaisusta, niin että peli on edelleen ratkaistavissa. Tällöin syntyy pelin alkutilanne (start) ja tämän hetkinen pelitilanne (game). Kaikki nämä palautetaan getterien avulla SudokuGamelle, joka tallentaa ne luokkamuuttujiinsa. Sitten SudokuGame palauttaa käyttöliittymälle start-taulun numerot, jotka lisätään peliruudukkoon pelinäkymään.
 
 ![Sekvenssikaavio](OhteSudoku_addingNumbers.png)
 
