@@ -1,6 +1,6 @@
 # Käyttöohje
 
-Lataa ensiksi tiedosto 
+Lataa ensiksi tiedosto **[AmalianSudoku.jar](https://github.com/amalia53/ot-harjoitustyo/releases/tag/Loppupalautus)**
 
 ### Ohjelman käynnistäminen 
 
