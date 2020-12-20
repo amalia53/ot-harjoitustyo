@@ -23,6 +23,7 @@ Kun peliruudukko on täytetty onnistuneesti, siirrytään voittonäkymään, jos
 
 #### Ennätyslista
 - Ennätyslista, jossa max 5 parasta aikaa (jos pelattuna)
+- Painike: Tyhjennä kaikki ajat
 - Painike: Valikko
 
 #### Pelinäkymässä
@@ -59,6 +60,7 @@ Kun peliruudukko on täytetty onnistuneesti, siirrytään voittonäkymään, jos
 
 - Näkee max 5 parasta aikaa
    - Mikäli pelejä ei ole koskaan pelattu, ennätyksiäkään ei ole
+- Voi tyhjentää kaikki tallennetut ajat
 - Voi siirtyä takaisin alkuvalikkoon
 
 #### Pelatessa
