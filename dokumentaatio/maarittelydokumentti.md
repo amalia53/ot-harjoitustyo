@@ -95,3 +95,9 @@ Perusversion jälkeen voidaan lisätä seuraavia toiminnallisuuksia:
 - Kello näkyviin pelin aikana
 - Asetukset, joissa voi...
   - Lisätä näkymään valitun ruudun pysty- ja vaakarivin korostamisen
+  
+# Parannettavaa
+
+Ensimmäistä kertaa avatessa ohjelma heittää virheen puuttuvasta tiedostosta, jota yritetään lukea. Tämä korjaantuu, kun yhden pelin on voittanut ja tiedosto luodaan eikä se estä ohjelman käyttämistä.
+
+Pelistä ei tarkisteta, onko sille vain yksi ratkaisu, joten osan peleistä voi ratkaista sääntöjen mukaan oikein, mutta peliä ei voiteta.
