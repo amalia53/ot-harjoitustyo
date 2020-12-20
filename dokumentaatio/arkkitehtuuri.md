@@ -49,6 +49,9 @@ Ajat tallennetaan tiedostoon aika sekunteina jokainen omalla rivillään.
 
 ## Toiminnallisuuksia
 
-![Sekvenssikaavio](OhteSudoku_addingNumbers.png)yksi peliin käytetty
+![Sekvenssikaavio](startingNewGame.png)
 
+![Sekvenssikaavio](OhteSudoku_addingNumbers.png)
+
+![Sekvenssikaavio](winningAGame.png)
 
