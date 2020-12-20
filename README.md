@@ -4,13 +4,16 @@ Sovelluksessani voi pelata klassista sudoku-peliä, jossa pelaajan tulee täytt�
 
 ## Dokumentaatio
 
-**[Työaikakirjanpito](https://github.com/amalia53/ot-harjoitustyo/blob/master/dokumentaatio/tyoaikakirjanpito.md)**
+**[Käyttöohje](https://github.com/amalia53/ot-harjoitustyo/blob/master/dokumentaatio/kayttoohje.md)**
 
 **[Määrittelydokumentti](https://github.com/amalia53/ot-harjoitustyo/blob/master/dokumentaatio/maarittelydokumentti.md)**
 
 **[Arkkitehtuuri](https://github.com/amalia53/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)**
 
-**[Käyttöohje](https://github.com/amalia53/ot-harjoitustyo/blob/master/dokumentaatio/kayttoohje.md)**
+**[Testausdokumentti]**(https://github.com/amalia53/ot-harjoitustyo/blob/master/dokumentaatio/Testausdokumentti.md)**
+
+**[Työaikakirjanpito](https://github.com/amalia53/ot-harjoitustyo/blob/master/dokumentaatio/tyoaikakirjanpito.md)**
+
 
 ## Releaset
 
