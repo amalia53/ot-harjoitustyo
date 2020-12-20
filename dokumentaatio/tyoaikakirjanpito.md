@@ -15,6 +15,6 @@
 |14.12.|6 h|Muistiinpanojen korjausta, daon luomista|
 |17.12.|4 h|ennätysaikojen korjausta, javadocin päivitys|
 |19.12.|5 h|Toimivuuden tarkastusta ja korjauksia, dokumenetaatiota|
-|20.12.||Dokumentaatiota|
-|Yht.| 67 h|
+|20.12.|9 h|Dokumentaatiota, ohjelman viimeistelyä|
+|Yht.| 81 h|
 
