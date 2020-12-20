@@ -96,7 +96,7 @@ Perusversion jälkeen voidaan lisätä seuraavia toiminnallisuuksia:
 - Asetukset, joissa voi...
   - Lisätä näkymään valitun ruudun pysty- ja vaakarivin korostamisen
   
-# Parannettavaa
+### Parannettavaa
 
 Ensimmäistä kertaa avatessa ohjelma heittää virheen puuttuvasta tiedostosta, jota yritetään lukea. Tämä korjaantuu, kun yhden pelin on voittanut ja tiedosto luodaan eikä se estä ohjelman käyttämistä.
 
