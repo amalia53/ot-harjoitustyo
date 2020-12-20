@@ -24,7 +24,6 @@ public class SudokuUi extends Application {
 
     private TimeDao times;
     private SudokuGame game;
-    //private StopWatch stopwatch;
     
     private Scene menuScene;
     private Scene gameScene;
@@ -45,12 +44,6 @@ public class SudokuUi extends Application {
     private Button gameMenuNewGameButton;
     private Button resumeButton;
     private VBox gameMenuBox;
-    
-    //Top
-    private BorderPane topPane;
-    private VBox topBox;
-    private Label topLabel;
-    private Button topMenuButton;
     
     //Win
     private BorderPane winPane;
@@ -117,10 +110,10 @@ public class SudokuUi extends Application {
      */
     
     public void createTopScene(Stage window) {
-        topPane = new BorderPane();
-        topLabel = new Label("Ennätyslista");
+        BorderPane topPane = new BorderPane();
+        Label topLabel = new Label("Ennätyslista");
         topLabel.setFont(Font.font("Arial", 50));
-        topBox = new VBox();
+        VBox topBox = new VBox();
         topBox.setAlignment(Pos.TOP_CENTER);
         topBox.setPadding(new Insets(50, 50, 50, 50));
         topBox.setSpacing(50);
@@ -140,14 +133,17 @@ public class SudokuUi extends Application {
         } catch (Exception ex) {
             System.out.println("Couldn't fetch top list: " + ex);;
         }
-        topMenuButton = new Button("Valikko");
+        Button topMenuButton = new Button("Valikko");
+        Button clearButton = new Button("Poista kaikki ajat");
         topMenuButton.setScaleX(2);
         topMenuButton.setScaleY(2);
         VBox buttonBox = new VBox(); 
         buttonBox.setAlignment(Pos.TOP_CENTER);
         buttonBox.setPadding(new Insets(100, 100, 100, 100));
-        buttonBox.getChildren().add(topMenuButton);
+        buttonBox.setSpacing(50);
+        buttonBox.getChildren().addAll(clearButton, topMenuButton);
         pushButton(topMenuButton, window, menuScene);
+        pushClearButton(clearButton, window);
         topPane.setBottom(buttonBox);
         topPane.setCenter(topBox);
         topScene = new Scene(topPane, 800, 1000);
@@ -161,12 +157,9 @@ public class SudokuUi extends Application {
     public void createNewGame(Stage window) {
         BorderPane gamePane = new BorderPane();
         GridPane sudokuGrid = new GridPane();
-        GridPane textGrid = new GridPane();
         createGrid(sudokuGrid);     
         sudokuGrid.setScaleX(1.8);
         sudokuGrid.setScaleY(1.8);
-        textGrid.setScaleX(1.8);
-        textGrid.setScaleY(1.8);
         HBox numbersBox = new HBox();
         createNumberButtons(window, sudokuGrid, numbersBox);
         numbersBox.setSpacing(40);
@@ -180,7 +173,6 @@ public class SudokuUi extends Application {
         gameMenuButton.setScaleY(1.8);
         gameOptionsBox.getChildren().addAll(gameMenuButton);
         gameOptionsBox.setPadding(new Insets(0, 0, 50, 0));
-        textGrid.setAlignment(Pos.CENTER);     
         sudokuGrid.setAlignment(Pos.CENTER);     
         numbersBox.setAlignment(Pos.CENTER);
         VBox gameBox = new VBox();
@@ -483,6 +475,14 @@ public class SudokuUi extends Application {
     
     public void pushTopButton(Stage window) {
         topButton.setOnAction(e -> {
+            createTopScene(window);
+            window.setScene(topScene);
+        });
+    }
+    
+    public void pushClearButton(Button clearButton, Stage window) {
+        clearButton.setOnAction(e -> {
+            times.clearTimes();
             createTopScene(window);
             window.setScene(topScene);
         });

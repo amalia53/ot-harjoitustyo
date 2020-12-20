@@ -101,8 +101,17 @@ public class TimeDao {
         return top;
     }
     
+    /**
+     * Tyhjentää aikalistan
+     */
+    
     public void clearTimes() {
         times.clear();
+        try (FileWriter writer = new FileWriter(new File(fileName))) {
+            writer.close();
+        } catch (Exception ex) {
+            System.out.println("Couldn't write to document: " + ex);
+        }
     }
     
     

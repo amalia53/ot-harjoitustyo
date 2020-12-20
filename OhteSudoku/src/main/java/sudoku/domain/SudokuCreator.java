@@ -50,7 +50,7 @@ public class SudokuCreator {
             this.createSolution();
         }
         start = copyTable(solution, start);
-        for (int i = 0; i < 40; i++) {
+        for (int i = 0; i < 45; i++) {
             removeNumberFromSolution();
         }
         game = copyTable(start, game);
@@ -63,7 +63,7 @@ public class SudokuCreator {
      * Jos ei ratkaistavissa, palauttaa numeron ratkaisuun ja kokeilee toista satunnaista numeroa
      */
     
-        public void removeNumberFromSolution() {
+    public void removeNumberFromSolution() {
         int[][] tempGame = new int[9][9];
         tempGame = copyTable(start, tempGame);
         int row = random();
@@ -75,6 +75,12 @@ public class SudokuCreator {
             }
         }
     }
+        
+    /**
+     * Tarkastaa, onko peli ratkaistavissa
+     * @param tempGame
+     * @return true, jos on; false, jos ei ole ratkaistavissa
+     */
  
     public boolean isSolvable(int[][] tempGame) {
         for (int row = 0; row < 9; row++) {
@@ -85,7 +91,6 @@ public class SudokuCreator {
                             tempGame[col][row] = number;
                             if (isSolvable(tempGame)) {
                                 return true;
-                            } else {
                             }
                         }
                     }
@@ -297,15 +302,5 @@ public class SudokuCreator {
         int randomNumber = random.nextInt(9);
         return randomNumber;
 
-    }
-    
-    public void print(int[][] board) {
-        for (int x = 0; x < 9; x++) {
-            for (int y = 0; y < 9; y++) {
-                System.out.print(board[y][x]);
-            }
-            System.out.println("");
-        }
-        System.out.println("");
     }
 }
