@@ -67,6 +67,8 @@ Ensiksi tarkistetaan, onko ruutu, jota yritetään valita alkutilanteessa pelin 
 
 Numeron poisto toimii muuten samoin, mutta pelitilanteeseen lisätään numero 0 ja ruutuun laitetaan tyhjää.
 
+Muistiinpanon lisäys toimii samoin, mutta pelitilanteeseen lisätään numero 10 ja lisäksi kutsutaan SudokuGame-metodia addNote(), jossa joko luodaan muistiinpanot sisältävään HashMap-muuttuja notesiin uusi lisäys, jonka avaimena toimii ruudun järjestysnumero ja arvoksi lisätään lista, johon muistiinpanon numero lisätään. Mikäli ruudussa on jo muistiinpano, niin olemassaolevaan muistiinpanolistaan lisätään uusi numero. Mikäli kyseinen muistiinpanonumero löytyy jo listalta, poistetaan ruudusta syötetty muistiinpanonumero.
+
 ### Pelin voittaminen
 
 Peli voitetaan, kun pelaaja on asettanut kaikkiin tyhjiin ruutuihin oikean numeron, jolloin käyttöliittymässä luodaan voittonäkymä
