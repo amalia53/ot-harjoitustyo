@@ -10,7 +10,6 @@ Sovelluksessani voi pelata klassista sudoku-peliä, jossa pelaajan tulee täytt�
 
 **[Arkkitehtuuri](https://github.com/amalia53/ot-harjoitustyo/blob/master/dokumentaatio/arkkitehtuuri.md)**
 
-**[Testausdokumentti]**(https://github.com/amalia53/ot-harjoitustyo/blob/master/dokumentaatio/Testausdokumentti.md)**
 
 **[Työaikakirjanpito](https://github.com/amalia53/ot-harjoitustyo/blob/master/dokumentaatio/tyoaikakirjanpito.md)**
 
