@@ -12,6 +12,8 @@ Ohjelman voi käynnistää komennolla:
 
 Alkuvalikossa voi valita "Uusi peli", jolloin luodaan uusi peli ja siirrytään pelinäkymään.
 
+![Valikko](koAlkuValikko-png)
+
 ### Ennätysten tarkastelu
 
 Alkuvalikosta pääsee ennätyslistaan valitsemalla "Ennätyslista". Täältä näkee parhaat ajat, jossa peli on pelattu. Mikäli pelejä on pelattu vähintään 5 kertaa, sivulla nähdään maksimissaan viisi parasta aikaa.
