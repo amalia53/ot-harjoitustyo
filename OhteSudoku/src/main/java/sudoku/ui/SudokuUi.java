@@ -15,9 +15,7 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import sudoku.dao.TimeDao;
 import sudoku.domain.SudokuGame;
@@ -26,6 +24,7 @@ public class SudokuUi extends Application {
 
     private TimeDao times;
     private SudokuGame game;
+    //private StopWatch stopwatch;
     
     private Scene menuScene;
     private Scene gameScene;
@@ -74,7 +73,7 @@ public class SudokuUi extends Application {
     
     @Override
     public void start(Stage window) throws Exception {
-        times = new sudoku.dao.TimeDao();
+        times = new sudoku.dao.TimeDao("sudokuTimes.txt");
         game = new sudoku.domain.SudokuGame();
         createMenuScene(window); 
         window.setScene(menuScene);
@@ -139,7 +138,7 @@ public class SudokuUi extends Application {
                 label.setFont(Font.font("Arial", 30));
             }
         } catch (Exception ex) {
-            ex.printStackTrace();
+            System.out.println("Couldn't fetch top list: " + ex);;
         }
         topMenuButton = new Button("Valikko");
         topMenuButton.setScaleX(2);
@@ -245,7 +244,7 @@ public class SudokuUi extends Application {
         try {
             bestDuration = times.getBestTime();
         } catch (Exception ex) {
-            ex.printStackTrace();
+            System.out.println("Couldn't fetch best time: " + ex);
         }
         String bestTime = setTime(bestDuration);
         Label timeLabel = new Label("Aikasi: " + time + "\n Paras aika: " + bestTime);
@@ -561,7 +560,7 @@ public class SudokuUi extends Application {
                 try {
                     times.saveTime(duration);
                 } catch (Exception ex) {
-                    System.out.println("Error: " + ex);;
+                    System.out.println("Couldn't save time: " + ex);;
                 }
                 createWinScene(window, sudokuGrid);
                 window.setScene(winScene);

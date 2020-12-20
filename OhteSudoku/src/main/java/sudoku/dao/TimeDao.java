@@ -22,9 +22,9 @@ public class TimeDao {
      * @throws Exception 
      */
     
-    public TimeDao() throws Exception {
+    public TimeDao(String name) throws Exception {
         times = new ArrayList<>();
-        fileName = "sudokuDao";
+        fileName = name;
         readTimes();
     }
     
@@ -48,7 +48,7 @@ public class TimeDao {
             writer.write(timelist);
             writer.close();
         } catch (Exception ex) {
-            System.out.println("Error: " + ex);
+            System.out.println("Couldn't write to document: " + ex);
         }
         
     }
@@ -65,7 +65,7 @@ public class TimeDao {
                 times.add(Integer.valueOf(scanner.nextLine()));
             }
         } catch (Exception ex) {
-            System.out.println("Error: " + ex);
+            System.out.println("Couldn't read document: " + ex);
         }
     }
     
@@ -99,6 +99,10 @@ public class TimeDao {
         }
         Collections.sort(top);
         return top;
+    }
+    
+    public void clearTimes() {
+        times.clear();
     }
     
     
