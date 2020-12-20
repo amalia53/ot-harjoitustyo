@@ -14,6 +14,7 @@
 |12.12.|5 h|3x3-ruudukkojen vahvistus, muistiinpanojen luominen|
 |14.12.|6 h|Muistiinpanojen korjausta, daon luomista|
 |17.12.|4 h|ennätysaikojen korjausta, javadocin päivitys|
-|19.12.||Toimivuuden tarkastusta ja korjauksia|
+|19.12.|5 h|Toimivuuden tarkastusta ja korjauksia, dokumenetaatiota|
+|20.12.||Dokumentaatiota|
 |Yht.| 67 h|
 
