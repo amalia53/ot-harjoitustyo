@@ -2,7 +2,7 @@
 
 ## Rakenne
 
-<img src="kaavio.jpg" alt="drawing" width="600"/>
+<img src="sudokuRakenne.png" alt="drawing" width="400"/>
 
 sudoku-pakkaukseni sisäälä on kolme pakkausta: sudoku.ui, sudoku.domain ja sudoku.dao. sudoku-ui sisältää käyttöliittymän toteuttavat Launch ja SudokuUi, sudoku.domain sisältää sovelluslogiikan toteuttavat SudokuGame ja SudokuSolver. sudoku.dao on tällä hetkellä tyhjä, mutta tulee sisältämään pelaajan ennätysaikojen tallennuksen toteutuksen.
 
