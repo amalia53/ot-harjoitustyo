@@ -7,22 +7,41 @@ sisältää yhden jokaista numeroa 1-9 välillä.
 
 ## Käyttöliittymä
 
-Sovellus koostuu valikosta, pelistä ja voittonäkymästä. Kun sovelluksen käynnistää, aukeaa valikko. Pelinäkymään pääsee valitsemalla valikosta uuden pelin. Mikäli pelistä siirtyy valikkoon kesken pelin, valikosta löytyy myös painike jatka peliä, josta pääsee takaisin pelinäkymään. Voittaessa tulee voittonäkymä, josta pääsee uuteen peliin tai valikkoon.
+Sovellus koostuu alkuvalikosta, ennätyslistasta, pelistä, pelivalikosta ja voittonäkymästä. Kun sovelluksen käynnistää, aukeaa alkuvalikko. 
+Alkuvalikosta valitsemalla "Enntäyslista", pääsee ennätyslistanäkymään. 
+Ennätyslistasta voi poistua alkuvalikkoon painamalla "Valikko".
+Alkuvalikosta pääsee pelinäkymään painamalla "Uusi peli". 
+Pelistä pääsee pelivalikkoon kesken pelin valitsemalla "Valikko". 
+Pelivalikosta painamalla "Jatka peliä" pääsee takaisin samaan pelinäkymää, ja painamalla "Uusi peli" siirrytään uuden pelin pelinäkymään. 
+Kun peliruudukko on täytetty onnistuneesti, siirrytään voittonäkymään, josta pääsee uuteen peliin ("Uusi peli") tai alkuvalikkoon ("Valikko").
 
-#### Valikon näkymässä
-- (Painike: Jatka peliä) *jos peli on kesken*
+#### Alkuvalikon näkymässä
+- Otsikko: Sudoku
+- Otsikko: Valikko
 - Painike: Uusi peli
+- Painike: Ennätyslista
+
+#### Ennätyslista
+- Ennätyslista, jossa max 5 parasta aikaa (jos pelattuna)
+- Painike: Valikko
 
 #### Pelinäkymässä
-- Peliruudukko, josta jokaisen ruudun voi valita
-- Numerot 1-9, jotka voi valita täytettäväksi
-- Ruudun tyhjennys valinta
-- Valikko-painike, josta siirrytään valikkoon
+- Peliruudukko, josta jokaisen tyhjän ruudun voi valita
+- 9 painiketta, joissa numerot 1-9
+- Muistiinpanopainike: voi valita onko päällä / pois
+- Painike: Poista
+- Painike: Valikko
+
+#### Pelivalikon näkymässä
+- Painike: Jatka peliä
+- Painike: Uusi peli
 
 #### Voittonäkymä
 
-- Valmis peliruudukko
 - Onnitteluviesti
+- Peliin kulunut aika
+- Paras aika
+- Valmis peliruudukko
 - Painike: Uusi peli
 - Painike: Valikko
 
@@ -32,37 +51,45 @@ Sovellus koostuu valikosta, pelistä ja voittonäkymästä. Kun sovelluksen käy
 
 #### Sovelluksen avatessaan
 
-- Voi valita aloittaa uuden pelin (Tehty)
-   - Aukeaa uusi generoitu peli (Osin tehty, syntyy uusi peli, mutta pelillä ei välttämättä ole uniikkia ratkaisua vielä)
+- Voi valita aloittaa uuden pelin
+   - Aukeaa uusi generoitu peli
+- Voi siirtyä tarkastelemaan ennätyslistaa
+
+#### Ennätyslistassa
+
+- Näkee max 5 parasta aikaa
+   - Mikäli pelejä ei ole koskaan pelattu, ennätyksiäkään ei ole
+- Voi siirtyä takaisin alkuvalikkoon
 
 #### Pelatessa
 
-- Näkee peliruudukon (Tehty)
-- Voi valita ruudun, johon voi... (Tehty)
-  - Lisätä numeron (Tehty)
-  - Poistaa numeron (Tehty)
-- Siirtyä valikkoon (Tehty)
+- Näkee peliruudukon
+- Voi valita ruudun, johon voi... 
+  - Lisätä numeron
+  - Lisätä muistiinpanon
+  - Poistaa yksittäisen muistiinpanonumeron
+  - Poistaa numeron tai kaikki muistiinpanot ruudusta
+- Siirtyä pelivalikkoon
 
-#### Valikossa
+#### Pelivalikossa
 
-- Voi palata takaisin keskeneräiseen peliin (Tehty)
-- Valita uuden pelin (Tehty)
+- Voi palata takaisin keskeneräiseen peliin
+- Valita uuden pelin
 
 #### Pelin loputtua
 
-- Peli loppuu, kun kaikissa ruuduissa on oikea numero (Tehty)
-- Voi katsoa valmista ruudukkoa (Tehty)
-- Aloittaa uuden pelin (Tehty)
-- Siirtyä valikkoon (Tehty)
+- Peli loppuu, kun kaikissa ruuduissa on oikea numero
+. Voi verrata peliin tähän kulunutta aikaa parhaaseen aikaan
+- Voi katsoa valmista ruudukkoa
+- Aloittaa uuden pelin 
+- Siirtyä alkuvalikkoon
 
 ## Jatkokehitysideoita
 
 Perusversion jälkeen voidaan lisätä seuraavia toiminnallisuuksia:
 
-- Muistiinpanojen täyttäminen ruutuihin
 - Kumoa viimeisin toiminto peliin
 - Useampi vaikeusaste
-- Kello, joka kertoo kauanko käytetty aikaa tämän pelin pelaamiseen
-  - Eri vaikeustasoila näkyvissä paras aika, jota voi yrittää voittaa
+- Kello näkyviin pelin aikana
 - Asetukset, joissa voi...
   - Lisätä näkymään valitun ruudun pysty- ja vaakarivin korostamisen
